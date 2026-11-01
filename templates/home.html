@@ -1,0 +1,173 @@
+{% extends 'base.html' %}
+
+{% block title %}Home & Experiment Overview | {{ content.site.title }}{% endblock %}
+
+{% block content %}
+<!-- Full-Width Photographic Hero with Real Group Photograph -->
+<section class="home-photo-hero" id="home-hero">
+  <div class="home-hero-bg" style="background-image: linear-gradient(180deg, rgba(11, 42, 53, 0.72) 0%, rgba(15, 76, 92, 0.80) 55%, rgba(11, 42, 53, 0.94) 100%), url('{{ url_for('static', filename='media/team-photo.jpg') }}');"></div>
+
+  <div class="container home-hero-content">
+    <div class="hero-badge-pill" style="margin-bottom: 1rem;">
+      <span>{{ content.site.college }}</span> &bull; 
+      <span>{{ content.site.division }} &bull; {{ content.site.batch }}</span>
+    </div>
+
+    <h1 class="hero-title" style="margin-bottom: 1rem;">
+      Preparation of <span>Liquid Detergent</span>
+    </h1>
+
+    <p class="hero-aim" style="max-width: 65ch; margin-bottom: 2rem;">
+      {{ content.site.aim }}
+    </p>
+
+    <div class="hero-ctas" style="margin-bottom: 2.5rem;">
+      <a href="/process" class="btn btn-accent btn-lg">
+        Explore 7-Stage Process
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg>
+      </a>
+      <a href="/ingredients" class="btn btn-outline btn-lg" style="background: rgba(255,255,255,0.18); color: #ffffff; border-color: rgba(255,255,255,0.35);">
+        Examine 7 Ingredients
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 2v7.31L4.1 19.46A2 2 0 0 0 5.8 22h12.4a2 2 0 0 0 1.7-2.54L14 9.31V2h-4Z"/></svg>
+      </a>
+    </div>
+
+    <!-- Team Cohort Bar (Carefully positioned to avoid occluding faces) -->
+    <div class="home-hero-team-strip">
+      <div class="strip-header">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <span>Department of Engineering Chemistry &bull; Student Investigation Cohort</span>
+      </div>
+      <div class="strip-members-grid">
+        {% for member in content.team %}
+        <div class="strip-member-pill">
+          <span class="m-name">{{ member.name }}</span>
+          <span class="m-prn">PRN: {{ member.prn }}</span>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Main Overview Container -->
+<div class="container" style="padding-top: 3.5rem;">
+  <!-- Reusable Safety Banner -->
+  {% include 'partials/safety-banner.html' %}
+
+  <!-- Aim & Objectives Card -->
+  <div class="card reveal-on-scroll" style="margin-bottom: 3rem;">
+    <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+      <span class="badge badge-aqua" style="font-size: 0.8rem;">Core Aim</span>
+      <h2 style="font-size: 1.4rem;">Statement of Investigation</h2>
+    </div>
+    <p style="font-size: 1.15rem; color: var(--deep); font-weight: 500; margin-bottom: 1.75rem; line-height: 1.6;">
+      "{{ content.site.aim }}"
+    </p>
+
+    <h3 style="font-size: 1.15rem; margin-bottom: 1rem; color: var(--deep-dark);">Key Learning Objectives</h3>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem;">
+      {% for obj in content.site.objectives %}
+      <div style="display: flex; align-items: flex-start; gap: 0.75rem; background: var(--foam-muted); padding: 1.1rem; border-radius: var(--radius-md); border-left: 3px solid var(--aqua);">
+        <span style="color: var(--deep); font-weight: 700; font-family: var(--font-mono); font-size: 1.05rem;">0{{ loop.index }}</span>
+        <span style="font-size: 0.925rem; color: var(--ink); line-height: 1.5;">{{ obj }}</span>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- 3-Sentence Theory of How Detergents Clean -->
+  <div class="theory-section reveal-on-scroll">
+    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+      <h2 style="font-size: 1.6rem;">Mechanism of Detergent Action</h2>
+      <span class="badge badge-aqua">Tri-Component Synergy</span>
+    </div>
+    <p style="font-size: 1.05rem; line-height: 1.7; margin-top: 0.75rem; color: var(--ink-light);">
+      {{ content.site.theory }}
+    </p>
+
+    <div class="theory-grid">
+      <!-- Pillar 1: Surfactant -->
+      <div class="theory-pillar">
+        <h4>
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a7 7 0 0 0 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7Z"/></svg>
+          1. Surfactants
+        </h4>
+        <p style="font-size: 0.88rem; color: var(--ink-light);">
+          Amphiphilic molecules featuring hydrophilic headgroups and hydrophobic tail chains. They orient at grease interfaces, encapsulating soils into water-soluble spherical micelles.
+        </p>
+      </div>
+
+      <!-- Pillar 2: Builders -->
+      <div class="theory-pillar">
+        <h4>
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          2. Alkaline Builders
+        </h4>
+        <p style="font-size: 0.88rem; color: var(--ink-light);">
+          Sodium carbonate sequesters hard-water Ca²⁺ and Mg²⁺ cations by precipitating insoluble mineral flakes, preserving surfactant molecules from inactivation.
+        </p>
+      </div>
+
+      <!-- Pillar 3: Hydrotropic Solvents -->
+      <div class="theory-pillar">
+        <h4>
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 2v7.31L4.1 19.46A2 2 0 0 0 5.8 22h12.4a2 2 0 0 0 1.7-2.54L14 9.31V2h-4Z"/></svg>
+          3. Hydrotropic Solvents
+        </h4>
+        <p style="font-size: 0.88rem; color: var(--ink-light);">
+          Distilled water and hydrotropes (SCS) provide an ion-free medium that disrupts excessive self-association, guaranteeing permanent solution optical clarity and cloud-point elevation.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Experiment at a Glance Row -->
+  <div class="stats-row reveal-on-scroll">
+    <div class="stat-box">
+      <div class="stat-number">{{ content.site.stats.ingredients_count }}</div>
+      <div style="font-weight: 700; color: var(--deep); font-size: 1.1rem;">Lab Ingredients</div>
+      <div style="font-size: 0.85rem; color: var(--ink-muted); margin-top: 0.25rem;">Builders, Solvents, Alkalis & Additives</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-number">{{ content.site.stats.operations_count }}</div>
+      <div style="font-weight: 700; color: var(--deep); font-size: 1.1rem;">Unit Operations</div>
+      <div style="font-size: 0.85rem; color: var(--ink-muted); margin-top: 0.25rem;">Mixing &bull; Heating &bull; Filtration</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-number">1</div>
+      <div style="font-weight: 700; color: var(--deep); font-size: 1.1rem;">Finished Detergent</div>
+      <div style="font-size: 0.85rem; color: var(--ink-muted); margin-top: 0.25rem;">Viscous, Homogeneous Liquid Product</div>
+    </div>
+  </div>
+
+  <!-- Team Member Cards with Roles and Foci -->
+  <div class="team-section reveal-on-scroll">
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.75rem; flex-wrap: wrap; gap: 1rem;">
+      <div>
+        <h2 style="font-size: 1.75rem;">Research Cohort & Credentials</h2>
+        <p style="font-size: 0.95rem; color: var(--ink-muted);">Batch B3 &bull; Department of Engineering Chemistry &bull; MIT AOE</p>
+      </div>
+      <span class="badge badge-aqua">6 Team Investigators</span>
+    </div>
+
+    <div class="team-cards-grid">
+      {% for member in content.team %}
+      <div class="team-card">
+        <div class="team-card-top">
+          <div class="team-avatar">
+            {{ member.name[:1] }}
+          </div>
+          <div>
+            <h3 style="font-size: 1.1rem; margin-bottom: 0.2rem;">{{ member.name }}</h3>
+            <span class="mono-formula" style="font-size: 0.8rem;">PRN: {{ member.prn }}</span>
+          </div>
+        </div>
+        <div class="role" style="color: var(--deep); font-weight: 600; margin-bottom: 0.25rem;">{{ member.role }}</div>
+        <div class="focus" style="font-size: 0.825rem; color: var(--ink-muted);">{{ member.focus }}</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}

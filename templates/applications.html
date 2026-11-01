@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+
+{% block title %}Practical Applications & Comparative Analysis | {{ content.site.title }}{% endblock %}
+
+{% block content %}
+<div class="container" style="padding-top: 2rem;">
+  <div class="page-header">
+    <span class="badge badge-aqua">Field Applications</span>
+    <h1>Practical Uses & Performance Balance</h1>
+    <p>Everyday cleaning domains, environmental tradeoffs, and comparative chemical performance.</p>
+  </div>
+
+  <!-- Reusable Safety Banner -->
+  {% include 'partials/safety-banner.html' %}
+
+  <!-- 5 Pictorial Use Case Cards -->
+  <div class="app-cards-grid">
+    {% for app in content.applications %}
+    <div class="app-card">
+      <div class="app-icon">
+        {% if app.icon == 'shirt' %}
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/></svg>
+        {% elif app.icon == 'utensils' %}
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2v6a3 3 0 0 1-3 3 3 3 0 0 1-3-3V2"/><path d="M15 11v11"/><path d="M5 2v8a3 3 0 0 0 3 3 3 3 0 0 0 3-3V2"/><path d="M8 13v9"/></svg>
+        {% elif app.icon == 'sparkles' %}
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
+        {% elif app.icon == 'hand' %}
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 11V6a2 2 0 0 0-2-2 2 2 0 0 0-2 2v4"/><path d="M14 10V4a2 2 0 0 0-2-2 2 2 0 0 0-2 2v6"/><path d="M10 10V6a2 2 0 0 0-2-2 2 2 0 0 0-2 2v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></svg>
+        {% else %}
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        {% endif %}
+      </div>
+      <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem; color: var(--deep);">{{ app.title }}</h3>
+      <p style="font-size: 0.9rem; color: var(--ink-light); line-height: 1.5;">{{ app.desc }}</p>
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- Advantages vs Disadvantages with Animated Balance Scale -->
+  <div class="comparison-section" id="comparison-card">
+    <div style="text-align: center;">
+      <span class="badge badge-aqua">Analytical Evaluation</span>
+      <h2 style="font-size: 2rem; margin-top: 0.5rem;">Advantages vs. Disadvantages</h2>
+      <p style="max-width: 55ch; margin: 0.5rem auto 0;">Balancing domestic cleaning convenience and builder efficacy against skin sensitivity and wastewater impact.</p>
+    </div>
+
+    <!-- Animated Balance Scale Graphic -->
+    <div class="scale-container">
+      <div class="scale-svg-wrapper">
+        <svg viewBox="0 0 240 140" fill="none">
+          <!-- Fulcrum Base -->
+          <polygon points="120,70 100,130 140,130" fill="#0f4c5c"/>
+          <line x1="90" y1="130" x2="150" y2="130" stroke="#0f4c5c" stroke-width="4" stroke-linecap="round"/>
+          <circle cx="120" cy="70" r="6" fill="#3ec1d3"/>
+
+          <!-- Rotating Balance Beam (Tips towards Advantages: left down, right up) -->
+          <g id="scale-beam-group" class="scale-beam">
+            <!-- Central Beam -->
+            <line x1="20" y1="70" x2="220" y2="70" stroke="#0f4c5c" stroke-width="4" stroke-linecap="round"/>
+            <circle cx="20" cy="70" r="4" fill="#0f4c5c"/>
+            <circle cx="220" cy="70" r="4" fill="#0f4c5c"/>
+
+            <!-- Left Pan (Advantages - Heavier) -->
+            <path d="M 10 95 L 20 70 L 30 95" stroke="#0f4c5c" stroke-width="1.5"/>
+            <path d="M 0 95 Q 20 110 40 95 Z" fill="#3ec1d3" opacity="0.85"/>
+            <text x="20" y="120" fill="#0f4c5c" font-size="9" font-weight="bold" text-anchor="middle">Advantages</text>
+
+            <!-- Right Pan (Disadvantages) -->
+            <path d="M 210 95 L 220 70 L 230 95" stroke="#0f4c5c" stroke-width="1.5"/>
+            <path d="M 200 95 Q 220 110 240 95 Z" fill="#e63946" opacity="0.7"/>
+            <text x="220" y="120" fill="#a31c26" font-size="9" font-weight="bold" text-anchor="middle">Tradeoffs</text>
+          </g>
+        </svg>
+      </div>
+      <span style="font-size: 0.8rem; color: var(--ink-muted); margin-top: 0.25rem;">
+        *Benefits significantly outweigh preparation tradeoffs under proper PPE handling
+      </span>
+    </div>
+
+    <!-- Two-Column Cards -->
+    <div class="comparison-grid">
+      <!-- Left Column: Advantages -->
+      <div class="comparison-col adv">
+        <h3 style="color: var(--deep); font-size: 1.3rem; display: flex; align-items: center; gap: 0.5rem;">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#2a9d8f" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          Key Advantages
+        </h3>
+        <ul class="comparison-list">
+          {% for adv in content.advantages %}
+          <li class="comparison-item">
+            <span class="bullet">&check;</span>
+            <div>
+              <strong style="color: var(--deep); font-size: 0.95rem;">{{ adv.title }}</strong>
+              <p style="font-size: 0.85rem; color: var(--ink-light); margin-top: 0.15rem;">{{ adv.desc }}</p>
+            </div>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <!-- Right Column: Disadvantages -->
+      <div class="comparison-col disadv">
+        <h3 style="color: #a31c26; font-size: 1.3rem; display: flex; align-items: center; gap: 0.5rem;">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#e63946" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Disadvantages & Hazards
+        </h3>
+        <ul class="comparison-list">
+          {% for dis in content.disadvantages %}
+          <li class="comparison-item">
+            <span class="bullet">!</span>
+            <div>
+              <strong style="color: #a31c26; font-size: 0.95rem;">{{ dis.title }}</strong>
+              <p style="font-size: 0.85rem; color: var(--ink-light); margin-top: 0.15rem;">{{ dis.desc }}</p>
+            </div>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  // IntersectionObserver to tip scale beam toward advantages on scroll
+  document.addEventListener('DOMContentLoaded', () => {
+    const card = document.getElementById('comparison-card');
+    const beam = document.getElementById('scale-beam-group');
+    if (!card || !beam) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          beam.classList.add('tipped');
+        }
+      });
+    }, { threshold: 0.3 });
+
+    observer.observe(card);
+  });
+</script>
+{% endblock %}

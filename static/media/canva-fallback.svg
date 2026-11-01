@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="600" height="400">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f4c5c" />
+      <stop offset="100%" stop-color="#0b2a35" />
+    </linearGradient>
+  </defs>
+  <rect width="600" height="400" fill="url(#grad)" />
+  <circle cx="300" cy="180" r="70" fill="#3ec1d3" opacity="0.2" />
+  <circle cx="300" cy="180" r="50" fill="none" stroke="#3ec1d3" stroke-width="3" />
+  <text x="300" y="195" fill="#ffffff" font-family="sans-serif" font-size="44" font-weight="bold" text-anchor="middle">📊</text>
+  <text x="300" y="290" fill="#3ec1d3" font-family="sans-serif" font-size="20" font-weight="bold" text-anchor="middle">Process Flowchart Diagram</text>
+  <text x="300" y="320" fill="#a2f2fd" font-family="sans-serif" font-size="14" text-anchor="middle">MIT AOE Chemistry Lab - Batch B3</text>
+</svg>

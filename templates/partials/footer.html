@@ -1,0 +1,48 @@
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h5>Preparation of Liquid Detergent</h5>
+        <p style="margin-bottom: 0.85rem;">
+          An educational chemistry laboratory project conducted by students of 
+          <strong>{{ content.site.college }}</strong> ({{ content.site.division }}, {{ content.site.batch }}).
+        </p>
+        <p style="font-size: 0.825rem; color: var(--ink-muted);">
+          Faculty Guide: {{ content.site.guide }} &bull; Subject: {{ content.site.subject }}
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h5>Quick Links</h5>
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.4rem;">
+          <li><a href="/home">Aim & Detergent Theory</a></li>
+          <li><a href="/ingredients">7 Ingredients & Reactions</a></li>
+          <li><a href="/process">7 Animated Lab Scenes</a></li>
+          <li><a href="/flowchart">Process Flow Diagram</a></li>
+          <li><a href="/quiz">Interactive Quiz & FAQ</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Project Team (Batch B3)</h5>
+        <ul class="footer-team-list">
+          {% for member in content.team %}
+          <li>
+            <strong>{{ member.name }}</strong><br>
+            <span class="mono-formula" style="font-size: 0.72rem; padding: 0.1em 0.3em;">{{ member.prn }}</span>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>
+        Made for the <strong>Liquid Detergent lab experiment</strong> &bull; Department of Engineering Chemistry.
+      </div>
+      <div>
+        &copy; 2026 MIT Academy of Engineering. Hand-crafted laboratory project.
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}404 - Experiment Not Found | {{ content.site.title }}{% endblock %}
+
+{% block content %}
+<div class="container error-page-wrapper">
+  <div class="error-flask-icon">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M10 2v7.31L4.1 19.46A2 2 0 0 0 5.8 22h12.4a2 2 0 0 0 1.7-2.54L14 9.31V2h-4Z"/>
+      <line x1="8.5" y1="2" x2="15.5" y2="2"/>
+      <line x1="9" y1="13" x2="15" y2="13"/>
+      <circle cx="10" cy="16" r="1" fill="currentColor"/>
+      <circle cx="14" cy="17" r="1.5" fill="currentColor"/>
+    </svg>
+  </div>
+
+  <span class="badge badge-alert" style="margin-bottom: 1rem;">Reaction Error 404</span>
+  <h1 style="font-size: 2.75rem; margin-bottom: 1rem;">Solution Precipitated (Not Found)</h1>
+  <p style="margin-bottom: 2rem; max-width: 52ch;">
+    The chemical reaction path or lab protocol you requested cannot be located in the current laboratory notebook.
+  </p>
+
+  <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+    <a href="/" class="btn btn-primary">Return to Landing</a>
+    <a href="/process" class="btn btn-outline">Explore Lab Process</a>
+  </div>
+</div>
+{% endblock %}

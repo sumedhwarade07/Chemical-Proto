@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}{{ content.site.title }} | Chemistry Lab Experiment{% endblock %}</title>
+  <meta name="description" content="Interactive chemistry laboratory experiment website for the Preparation of Liquid Detergent. Created by students of MIT Academy of Engineering.">
+  <meta name="theme-color" content="#0f4c5c">
+
+  <!-- Preconnect to Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/tokens.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/components.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/pages.css') }}">
+
+  {% block head %}{% endblock %}
+</head>
+<body>
+  <!-- Accessible Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main laboratory content</a>
+
+  <!-- Global Glass Navbar -->
+  {% include 'partials/navbar.html' %}
+
+  <!-- Main Content Landmark -->
+  <main id="main-content" class="main-content">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Ambient Audio Floating Controller -->
+  {% include 'partials/music-toggle.html' %}
+
+  <!-- Global Footer -->
+  {% include 'partials/footer.html' %}
+
+  <!-- Core JavaScript -->
+  <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+  <script src="{{ url_for('static', filename='js/music.js') }}" defer></script>
+  <script src="{{ url_for('static', filename='js/reveal.js') }}" defer></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+
+{% block title %}Interactive Knowledge Quiz & FAQ | {{ content.site.title }}{% endblock %}
+
+{% block content %}
+<div class="container" style="padding-top: 2rem;">
+  <div class="page-header">
+    <span class="badge badge-aqua">Self-Assessment & FAQs</span>
+    <h1>Laboratory Knowledge Quiz & FAQ</h1>
+    <p>Test your understanding of detergent chemistry with our server-scored evaluation, then review common experimental questions.</p>
+  </div>
+
+  <!-- Reusable Safety Banner -->
+  {% include 'partials/safety-banner.html' %}
+
+  <!-- Interactive Quiz Card -->
+  <div class="quiz-runner-card" id="quiz-container">
+    <!-- Progress Indicator -->
+    <div class="quiz-progress-bar-wrapper">
+      <div class="quiz-progress-fill" id="quiz-progress"></div>
+    </div>
+
+    <!-- Active Question View -->
+    <div id="quiz-active-view">
+      <div class="quiz-question-meta">
+        <span class="badge badge-aqua" id="quiz-counter">Question 01 / 10</span>
+        <span class="mono-formula" style="font-size: 0.78rem;">Server-Scored</span>
+      </div>
+
+      <h2 class="quiz-question-title" id="quiz-question-text">
+        Loading question...
+      </h2>
+
+      <!-- Options -->
+      <div class="quiz-options-list" id="quiz-options-container">
+        <!-- Injected via JavaScript -->
+      </div>
+
+      <!-- Instant Explanation Box -->
+      <div class="quiz-explanation-box" id="quiz-explanation">
+        <div style="font-weight: 700; color: var(--deep); margin-bottom: 0.25rem;" id="explanation-header">
+          Explanation
+        </div>
+        <p id="explanation-text" style="margin: 0; font-size: 0.9rem; color: var(--ink-light);"></p>
+      </div>
+
+      <!-- Action Button -->
+      <div style="display: flex; justify-content: flex-end;">
+        <button class="btn btn-primary" id="quiz-next-btn" disabled>
+          Next Question &rarr;
+        </button>
+      </div>
+    </div>
+
+    <!-- Final Score View (Hidden by default) -->
+    <div class="quiz-score-card" id="quiz-score-view">
+      <div class="score-circle">
+        <span class="score-num" id="final-score-val">0</span>
+        <span class="score-total">/ 10</span>
+      </div>
+
+      <h2 style="font-size: 1.8rem; margin-bottom: 0.5rem;" id="final-score-rating">
+        Assessment Complete
+      </h2>
+      <p id="final-score-message" style="margin: 0 auto 2rem; max-width: 48ch; color: var(--ink-light);">
+        You scored 0%.
+      </p>
+
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <button class="btn btn-accent" id="quiz-retry-btn">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/></svg>
+          Retry Quiz
+        </button>
+        <a href="/process" class="btn btn-outline">
+          Review Lab Process
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Accessible Accordion FAQ Section -->
+  <div class="faq-section" id="faq-container">
+    <div style="text-align: center; margin-bottom: 2rem;">
+      <span class="badge badge-aqua">Frequently Asked Questions</span>
+      <h2 style="font-size: 1.8rem; margin-top: 0.5rem;">Laboratory Procedure FAQs</h2>
+      <p style="font-size: 0.95rem; color: var(--ink-light);">Essential chemistry questions, safety guidelines, and troubleshooting notes.</p>
+    </div>
+
+    <div class="faq-list">
+      {% for faq in content.faqs %}
+      <div class="faq-item">
+        <button class="faq-trigger" aria-expanded="false">
+          <span>{{ faq.q }}</span>
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+        <div class="faq-body">
+          <p>{{ faq.a }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/quiz.js') }}" defer></script>
+{% endblock %}

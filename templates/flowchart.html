@@ -1,0 +1,208 @@
+{% extends 'base.html' %}
+
+{% block title %}Process Flow Diagram | {{ content.site.title }}{% endblock %}
+
+{% block content %}
+<div class="container" style="padding-top: 2rem;">
+  <div class="page-header">
+    <span class="badge badge-aqua">Engineering Flowsheet</span>
+    <h1>Process Flow Diagram</h1>
+    <p>Visual overview of all 7 raw material inputs converging sequentially into the 4 core chemical unit operations.</p>
+  </div>
+
+  <!-- Reusable Safety Banner -->
+  {% include 'partials/safety-banner.html' %}
+
+  <!-- Part 1: Canva Diagram Card with Zoom & Download -->
+  <div class="canva-flow-card">
+    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem;">
+      <div style="text-align: left;">
+        <h2 style="font-size: 1.5rem; color: var(--deep);">Lab Procedure Flowsheet</h2>
+        <p style="font-size: 0.9rem; color: var(--ink-muted);">Batch B3 Graphical Presentation &bull; Click image to inspect full scale</p>
+      </div>
+      <div style="display: flex; gap: 0.75rem;">
+        <a href="{{ url_for('static', filename='media/canva-flow.png') }}" download="liquid-detergent-flowchart.png" class="btn btn-outline btn-sm">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download Diagram
+        </a>
+      </div>
+    </div>
+
+    {% if content.site.canva_embed_url %}
+    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: var(--radius-lg); margin-top: 1.5rem;">
+      <iframe src="{{ content.site.canva_embed_url }}" style="position: absolute; top:0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+    </div>
+    {% else %}
+    <div class="canva-preview-wrapper" id="canva-zoom-trigger">
+      <img 
+        src="{{ url_for('static', filename='media/canva-flow.png') }}" 
+        alt="Canva Process Flowchart for Liquid Detergent Preparation" 
+        class="canva-preview-img"
+        id="canva-img"
+        onerror="this.src='/static/media/canva-fallback.svg'"
+      >
+      <div style="position: absolute; bottom: 12px; right: 12px; background: rgba(11,42,53,0.8); color: #fff; padding: 0.35rem 0.75rem; border-radius: var(--radius-sm); font-size: 0.75rem; backdrop-filter: blur(4px);">
+        🔍 Click to Zoom
+      </div>
+    </div>
+    {% endif %}
+  </div>
+
+  <!-- Part 2: Native Animated Convergence Flowchart -->
+  <div class="native-flow-card">
+    <div style="text-align: center; margin-bottom: 2rem;">
+      <span class="badge badge-aqua">Interactive Reactive Map</span>
+      <h2 style="font-size: 1.8rem; margin-top: 0.5rem;">Native Convergence Schematic</h2>
+      <p style="font-size: 0.95rem; color: var(--ink-light);">Hover or tap any node to inspect unit operation parameters.</p>
+    </div>
+
+    <!-- Native SVG Flowchart with 7 Converging Inputs -> Mixing -> Heating -> Filtration -> Product -->
+    <div class="native-flow-svg-wrapper">
+      <svg class="native-flow-svg" viewBox="0 0 960 480" fill="none">
+        <defs>
+          <!-- Arrow marker -->
+          <marker id="flow-arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 1 L 8 5 L 0 9 z" fill="#0f4c5c" />
+          </marker>
+          <marker id="flow-arrow-aqua" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 1 L 8 5 L 0 9 z" fill="#3ec1d3" />
+          </marker>
+        </defs>
+
+        <!-- 7 Converging Flow Lines from Left Inputs to Mixing Node (at x: 380, y: 240) -->
+        <!-- 1. Na2CO3 -->
+        <path d="M 180 50 C 270 50, 300 240, 370 240" stroke="#0f4c5c" stroke-width="2.5" class="flow-line" marker-end="url(#flow-arrow)"/>
+        <!-- 2. SCS -->
+        <path d="M 180 110 C 260 110, 300 240, 370 240" stroke="#0f4c5c" stroke-width="2.5" class="flow-line" marker-end="url(#flow-arrow)"/>
+        <!-- 3. NaCl -->
+        <path d="M 180 170 C 250 170, 310 240, 370 240" stroke="#0f4c5c" stroke-width="2.5" class="flow-line" marker-end="url(#flow-arrow)"/>
+        <!-- 4. Glycerine -->
+        <path d="M 180 240 L 370 240" stroke="#0f4c5c" stroke-width="2.5" class="flow-line" marker-end="url(#flow-arrow)"/>
+        <!-- 5. Distilled Water -->
+        <path d="M 180 310 C 250 310, 310 240, 370 240" stroke="#0f4c5c" stroke-width="2.5" class="flow-line" marker-end="url(#flow-arrow)"/>
+        <!-- 6. CuSO4 -->
+        <path d="M 180 370 C 260 370, 300 240, 370 240" stroke="#0f4c5c" stroke-width="2.5" class="flow-line" marker-end="url(#flow-arrow)"/>
+        <!-- 7. NaOH -->
+        <path d="M 180 430 C 270 430, 300 240, 370 240" stroke="#0f4c5c" stroke-width="2.5" class="flow-line" marker-end="url(#flow-arrow)"/>
+
+        <!-- Sequential Inter-Stage Flow Lines -->
+        <!-- Mixing -> Heating -->
+        <path d="M 480 240 L 530 240" stroke="#3ec1d3" stroke-width="3.5" class="flow-line" marker-end="url(#flow-arrow-aqua)"/>
+        <!-- Heating -> Filtration -->
+        <path d="M 640 240 L 690 240" stroke="#3ec1d3" stroke-width="3.5" class="flow-line" marker-end="url(#flow-arrow-aqua)"/>
+        <!-- Filtration -> Final Detergent -->
+        <path d="M 800 240 L 840 240" stroke="#3ec1d3" stroke-width="3.5" class="flow-line" marker-end="url(#flow-arrow-aqua)"/>
+
+        <!-- 7 Raw Material Input Node Chips (Left Column) -->
+        <!-- Node 1: Na2CO3 -->
+        <g class="flow-node" data-title="Sodium Carbonate (Na₂CO₃)" data-desc="Alkaline builder (Qty: [QTY] g). Precipitates hard-water minerals.">
+          <rect x="20" y="32" width="160" height="36" rx="18" fill="#ffffff" stroke="#0f4c5c" stroke-width="1.8"/>
+          <circle cx="38" cy="50" r="10" fill="#e6f9fc"/>
+          <text x="38" y="54" fill="#0f4c5c" font-size="10" font-weight="bold" text-anchor="middle">1</text>
+          <text x="95" y="54" fill="#0b2a35" font-size="11" font-weight="600" text-anchor="middle">Na₂CO₃ (Builder)</text>
+        </g>
+
+        <!-- Node 2: SCS -->
+        <g class="flow-node" data-title="SCS (Hydrotrope)" data-desc="Sodium cumene sulfonate. Solubilizes surfactant system and clears cloud point.">
+          <rect x="20" y="92" width="160" height="36" rx="18" fill="#ffffff" stroke="#0f4c5c" stroke-width="1.8"/>
+          <circle cx="38" cy="110" r="10" fill="#e6f9fc"/>
+          <text x="38" y="114" fill="#0f4c5c" font-size="10" font-weight="bold" text-anchor="middle">2</text>
+          <text x="95" y="114" fill="#0b2a35" font-size="11" font-weight="600" text-anchor="middle">SCS (Hydrotrope)</text>
+        </g>
+
+        <!-- Node 3: NaCl -->
+        <g class="flow-node" data-title="Sodium Chloride (NaCl)" data-desc="Viscosity modifier. Shields ionic repulsion to promote micelle elongation.">
+          <rect x="20" y="152" width="160" height="36" rx="18" fill="#ffffff" stroke="#0f4c5c" stroke-width="1.8"/>
+          <circle cx="38" cy="170" r="10" fill="#e6f9fc"/>
+          <text x="38" y="174" fill="#0f4c5c" font-size="10" font-weight="bold" text-anchor="middle">3</text>
+          <text x="95" y="174" fill="#0b2a35" font-size="11" font-weight="600" text-anchor="middle">NaCl (Thickener)</text>
+        </g>
+
+        <!-- Node 4: Glycerine -->
+        <g class="flow-node" data-title="Glycerine (C₃H₈O₃)" data-desc="Triol humectant. Maintains skin moisture barrier and stability.">
+          <rect x="20" y="222" width="160" height="36" rx="18" fill="#ffffff" stroke="#0f4c5c" stroke-width="1.8"/>
+          <circle cx="38" cy="240" r="10" fill="#e6f9fc"/>
+          <text x="38" y="244" fill="#0f4c5c" font-size="10" font-weight="bold" text-anchor="middle">4</text>
+          <text x="95" y="244" fill="#0b2a35" font-size="11" font-weight="600" text-anchor="middle">Glycerine (Humectant)</text>
+        </g>
+
+        <!-- Node 5: Distilled Water -->
+        <g class="flow-node" data-title="Distilled Water (H₂O)" data-desc="Pure solvent carrier free from interfering calcium or magnesium ions.">
+          <rect x="20" y="292" width="160" height="36" rx="18" fill="#ffffff" stroke="#0f4c5c" stroke-width="1.8"/>
+          <circle cx="38" cy="310" r="10" fill="#e6f9fc"/>
+          <text x="38" y="314" fill="#0f4c5c" font-size="10" font-weight="bold" text-anchor="middle">5</text>
+          <text x="95" y="314" fill="#0b2a35" font-size="11" font-weight="600" text-anchor="middle">Distilled H₂O (Solvent)</text>
+        </g>
+
+        <!-- Node 6: CuSO4 -->
+        <g class="flow-node" data-title="Copper Sulfate (CuSO₄)" data-desc="Visual tracer and characteristic light blue tint. Handle carefully.">
+          <rect x="20" y="352" width="160" height="36" rx="18" fill="#ffffff" stroke="#0f4c5c" stroke-width="1.8"/>
+          <circle cx="38" cy="370" r="10" fill="#e6f9fc"/>
+          <text x="38" y="374" fill="#0f4c5c" font-size="10" font-weight="bold" text-anchor="middle">6</text>
+          <text x="95" y="374" fill="#0b2a35" font-size="11" font-weight="600" text-anchor="middle">CuSO₄ (Additive)</text>
+        </g>
+
+        <!-- Node 7: NaOH -->
+        <g class="flow-node" data-title="Sodium Hydroxide (NaOH)" data-desc="Strong alkali base. Exothermic neutralization agent. Strict PPE required.">
+          <rect x="20" y="412" width="160" height="36" rx="18" fill="#ffffff" stroke="#e63946" stroke-width="1.8"/>
+          <circle cx="38" cy="430" r="10" fill="#fde8ea"/>
+          <text x="38" y="434" fill="#e63946" font-size="10" font-weight="bold" text-anchor="middle">7</text>
+          <text x="95" y="434" fill="#a31c26" font-size="11" font-weight="bold" text-anchor="middle">NaOH (Alkali)</text>
+        </g>
+
+        <!-- Process Stage Nodes (Middle & Right) -->
+        <!-- Stage 1: Mixing -->
+        <g class="flow-node" data-title="1. Mixing Stage" data-desc="Mechanical agitation brings all 7 precursors into uniform dispersion without aeration.">
+          <rect x="370" y="200" width="110" height="80" rx="14" fill="#0f4c5c"/>
+          <circle cx="425" cy="230" r="14" fill="#3ec1d3" opacity="0.3"/>
+          <path d="M 420 230 A 5 5 0 1 1 430 230" stroke="#3ec1d3" stroke-width="2" fill="none"/>
+          <text x="425" y="258" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">MIXING</text>
+        </g>
+
+        <!-- Stage 2: Heating -->
+        <g class="flow-node" data-title="2. Heating Stage" data-desc="Controlled thermal heating (45-55°C) to accelerate solubilization and complete reaction.">
+          <rect x="530" y="200" width="110" height="80" rx="14" fill="#0f4c5c"/>
+          <circle cx="585" cy="230" r="14" fill="#ffb703" opacity="0.3"/>
+          <path d="M 585 220 Q 588 227 585 235" stroke="#ffb703" stroke-width="2" fill="none"/>
+          <text x="585" y="258" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">HEATING</text>
+        </g>
+
+        <!-- Stage 3: Filtration -->
+        <g class="flow-node" data-title="3. Filtration Stage" data-desc="Gravity passage through fluted filter paper traps all particulate sediment.">
+          <rect x="690" y="200" width="110" height="80" rx="14" fill="#0f4c5c"/>
+          <circle cx="745" cy="230" r="14" fill="#3ec1d3" opacity="0.3"/>
+          <polygon points="738,222 752,222 745,236" fill="#3ec1d3"/>
+          <text x="745" y="258" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">FILTRATION</text>
+        </g>
+
+        <!-- Final Stage: Liquid Detergent -->
+        <g class="flow-node" data-title="4. Finished Product" data-desc="Homogeneous, sparkling liquid detergent packaged in sealed containers for evaluation.">
+          <rect x="840" y="190" width="105" height="100" rx="16" fill="linear-gradient(180deg, #3ec1d3 0%, #0f4c5c 100%)" stroke="#3ec1d3" stroke-width="2"/>
+          <circle cx="892" cy="225" r="18" fill="#ffffff" opacity="0.2"/>
+          <text x="892" y="248" fill="#ffffff" font-size="11" font-weight="bold" text-anchor="middle">LIQUID</text>
+          <text x="892" y="262" fill="#ffffff" font-size="11" font-weight="bold" text-anchor="middle">DETERGENT</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<!-- Flowchart Interactive Tooltip -->
+<div id="flow-node-tooltip" class="flow-tooltip" role="tooltip">
+  <div id="tooltip-title" style="font-weight: 700; color: var(--aqua); margin-bottom: 0.2rem;"></div>
+  <div id="tooltip-desc" style="font-size: 0.78rem; line-height: 1.4;"></div>
+</div>
+
+<!-- Canva Image Lightbox Zoom Modal -->
+<div class="lightbox-modal" id="canva-lightbox" role="dialog" aria-modal="true" aria-label="Canva Flowchart Full View">
+  <button class="lightbox-close" id="lightbox-close-btn" aria-label="Close zoomed view">&times;</button>
+  <div class="lightbox-content">
+    <img src="{{ url_for('static', filename='media/canva-flow.png') }}" alt="Full Scale Liquid Detergent Flowchart" class="lightbox-img" id="lightbox-full-img" onerror="this.src='/static/media/canva-fallback.svg'">
+    <div class="lightbox-caption">Preparation of Liquid Detergent &bull; Complete Experimental Flowsheet</div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/flow.js') }}" defer></script>
+{% endblock %}

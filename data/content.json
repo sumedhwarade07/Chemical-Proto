@@ -1,0 +1,888 @@
+{
+  "site": {
+    "title": "Preparation of Liquid Detergent",
+    "subtitle": "Chemistry Laboratory Experiment & Interactive Study Guide",
+    "college": "MIT Academy of Engineering",
+    "division": "Division B",
+    "batch": "Batch B3",
+    "guide": "[PLACEHOLDER - Faculty Guide]",
+    "subject": "[PLACEHOLDER - Engineering Chemistry Lab]",
+    "aim": "To synthesize and prepare high-efficiency liquid detergent using balanced surfactants, builders, and viscosity modifiers.",
+    "objectives": [
+      "Understand the neutralization and micelle formation pathways of synthetic detergents.",
+      "Explore the functional chemistry of builders, hydrotropes, and alkaline agents.",
+      "Formulate a stable aqueous liquid detergent with optimal viscosity and foaming power.",
+      "Demonstrate the practical sequestration of divalent minerals in hard water."
+    ],
+    "theory": "Liquid detergents rely on a balanced synergy of surfactants, alkaline builders, and hydrotropic solvents. Surfactants lower the surface tension of water, allowing lipophilic dirt and greases to be emulsified into micelle structures. Concurrently, builders soften incoming hard water by sequestering divalent mineral ions, while humectants and viscosity modifiers ensure stability and skin mildness.",
+    "stats": {
+      "ingredients_count": 7,
+      "operations_count": 3,
+      "product_type": "1 Stable Liquid Detergent"
+    },
+    "safety_general": "Mandatory lab PPE required: safety goggles, chemical-resistant nitrile gloves, and buttoned lab coat. Handle sodium hydroxide with extreme caution.",
+    "canva_embed_url": "",
+    "product_description": "Dark blue-green liquid formulation."
+  },
+  "team": [
+    {
+      "prn": "202501100205",
+      "name": "Kartik Dhote",
+      "role": "Formulation & Synthesis Specialist",
+      "focus": "Precursor measurement & alkali neutralization"
+    },
+    {
+      "prn": "202501100219",
+      "name": "Sumedh Warade",
+      "role": "Process Engineering & Thermodynamics",
+      "focus": "Thermal bath regulation & solubility optimization"
+    },
+    {
+      "prn": "202501100215",
+      "name": "Prem Belote",
+      "role": "Chemical Modeling & Safety Lead",
+      "focus": "Hazard containment & stoichiometric control"
+    },
+    {
+      "prn": "202501100214",
+      "name": "Suraj Maske",
+      "role": "Filtration & Quality Testing",
+      "focus": "Filtrate clarity & sediment removal"
+    },
+    {
+      "prn": "202501100209",
+      "name": "Yash Sabe",
+      "role": "Viscosity & Rheology Analyst",
+      "focus": "NaCl electrolyte dosing & micelle packing"
+    },
+    {
+      "prn": "202501100216",
+      "name": "Viraj Shinde",
+      "role": "Instrumentation & Protocol Documentation",
+      "focus": "Optical density & data visualization"
+    }
+  ],
+  "ingredients": [
+    {
+      "slug": "distilled-water",
+      "name": "Distilled Water",
+      "formula": "H2O",
+      "formula_display": "H₂O",
+      "category": "Solvent",
+      "state": "Liquid",
+      "quantity": "30 ml",
+      "quantity_value": 30,
+      "unit": "ml",
+      "role": "Solvent / Base of the formulation",
+      "function": "Solvent / Base of the formulation",
+      "safety": "Neutral, safe universal carrier. Non-hazardous in laboratory handling.",
+      "notes": "Provides an ion-free aqueous solvent matrix, ensuring that no multivalent minerals (Ca²⁺/Mg²⁺) interfere with surfactant activity or cause premature scum.",
+      "reaction_slug": null,
+      "image": "/static/media/ingredients/distilled-water.svg"
+    },
+    {
+      "slug": "sodium-lauryl-sulphate",
+      "name": "Sodium Lauryl Sulphate (SLS)",
+      "formula": "C12H25SO4Na",
+      "formula_display": "C₁₂H₂₅SO₄Na",
+      "category": "Surfactant",
+      "state": "Solid",
+      "quantity": "2 g",
+      "quantity_value": 2,
+      "unit": "g",
+      "role": "Primary surfactant; cleansing and foaming agent",
+      "function": "Primary surfactant; cleansing and foaming agent",
+      "safety": "Causes skin and eye irritation. Inhalation of airborne powder may irritate respiratory passages. Handle gently to minimize dusting.",
+      "notes": "Primary anionic surfactant with amphiphilic structure. Lowers the surface tension of water, emulsifies greases into micelles, and generates cleansing lather.",
+      "reaction_slug": "neutralization",
+      "image": "/static/media/ingredients/scs.svg"
+    },
+    {
+      "slug": "sodium-carbonate",
+      "name": "Sodium Carbonate",
+      "formula": "Na2CO3",
+      "formula_display": "Na₂CO₃",
+      "category": "Builder",
+      "state": "Solid",
+      "quantity": "2 g",
+      "quantity_value": 2,
+      "unit": "g",
+      "role": "Builder; helps maintain alkalinity and improve cleaning conditions",
+      "function": "Builder; helps maintain alkalinity and improve cleaning conditions",
+      "safety": "Causes eye irritation and mild skin irritation. Avoid breathing airborne powder.",
+      "notes": "Inorganic builder that precipitates divalent hardness ions as insoluble calcium carbonate (CaCO₃↓) while establishing the alkaline buffer needed for soil removal.",
+      "reaction_slug": "water-softening",
+      "image": "/static/media/ingredients/sodium-carbonate.svg"
+    },
+    {
+      "slug": "sodium-chloride",
+      "name": "Sodium Chloride",
+      "formula": "NaCl",
+      "formula_display": "NaCl",
+      "category": "Thickener",
+      "state": "Solid",
+      "quantity": "2 g",
+      "quantity_value": 2,
+      "unit": "g",
+      "role": "Viscosity-adjusting agent (Thickener)",
+      "function": "Viscosity-adjusting agent",
+      "safety": "Non-hazardous common chemical; non-toxic in small laboratory amounts.",
+      "notes": "Acts as an electrolyte thickener. The sodium ions screen electrostatic repulsion between anionic SLS headgroups, driving micelle elongation and increasing viscosity.",
+      "reaction_slug": null,
+      "image": "/static/media/ingredients/sodium-chloride.svg"
+    },
+    {
+      "slug": "glycerine",
+      "name": "Glycerine",
+      "formula": "C3H8O3",
+      "formula_display": "C₃H₈O₃",
+      "category": "Humectant",
+      "state": "Liquid",
+      "quantity": "5 ml",
+      "quantity_value": 5,
+      "unit": "ml",
+      "role": "Humectant; moisture-retaining agent",
+      "function": "Humectant; moisture-retaining agent",
+      "safety": "Non-toxic, safe for skin. Keep away from strong oxidizing reagents.",
+      "notes": "Polyol humectant containing three hydroxyl (-OH) groups. Binds water molecules to mitigate cutaneous lipid stripping, maintaining formulation mildness.",
+      "reaction_slug": null,
+      "image": "/static/media/ingredients/glycerine.svg"
+    },
+    {
+      "slug": "copper-sulphate",
+      "name": "Copper Sulphate",
+      "formula": "CuSO4",
+      "formula_display": "CuSO₄",
+      "category": "Additive",
+      "state": "Solid",
+      "quantity": "2 g",
+      "quantity_value": 2,
+      "unit": "g",
+      "role": "Experimental additive / Visual indicator",
+      "function": "Experimental additive",
+      "safety": "Harmful if swallowed. Causes serious eye damage. Toxic to aquatic organisms. Dispose strictly in designated heavy-metal laboratory waste.",
+      "notes": "Experimental chemical additive that reacts in the alkaline medium to impart the characteristic dark blue-green hue to the prepared liquid detergent.",
+      "reaction_slug": null,
+      "image": "/static/media/ingredients/copper-sulfate.svg"
+    },
+    {
+      "slug": "sodium-hydroxide",
+      "name": "Sodium Hydroxide",
+      "formula": "NaOH",
+      "formula_display": "NaOH",
+      "category": "Alkaline Agent",
+      "state": "Solid",
+      "quantity": "2 g",
+      "quantity_value": 2,
+      "unit": "g",
+      "role": "Alkaline agent; pH adjustment",
+      "function": "Alkaline agent; pH adjustment",
+      "safety": "DANGER: CORROSIVE. Causes severe chemical skin burns and serious permanent eye injury. Dissolution generates intense exothermic heat.",
+      "notes": "Strong alkaline reagent used strictly under laboratory supervision to adjust pH and facilitate saponification and neutralization pathways.",
+      "reaction_slug": "neutralization",
+      "image": "/static/media/ingredients/sodium-hydroxide.svg"
+    }
+  ],
+  "reactions": [
+    {
+      "slug": "neutralization",
+      "title": "Acid-Base Neutralization",
+      "equation": "R-SO3H + NaOH -> R-SO3Na + H2O",
+      "reactants": "Sulfonic Acid + Sodium Hydroxide",
+      "products": "Sodium Alkyl Sulfonate (Detergent Salt) + Water",
+      "caption": "An acid precursor reacts exothermically with sodium hydroxide alkali to yield the active amphiphilic detergent salt and water.",
+      "video": "reactions/neutralization.mp4",
+      "mechanism": "Hydroxide ions (OH⁻) deprotonate the acid, forming hydrophilic sulfonate headgroups bonded to ionic sodium."
+    },
+    {
+      "slug": "water-softening",
+      "title": "Water Softening by Carbonate Precipitation",
+      "equation": "Na2CO3 + Ca2+ -> CaCO3(s) v + 2Na+",
+      "reactants": "Sodium Carbonate + Dissolved Calcium Ions",
+      "products": "Calcium Carbonate Precipitate + Sodium Ions",
+      "caption": "Sodium carbonate builder captures divalent calcium ions in hard water, precipitating harmless chalk flakes before they inactivate detergent.",
+      "video": "reactions/water-softening.mp4",
+      "mechanism": "Carbonate anions (CO₃²⁻) form an insoluble lattice with Ca²⁺ minerals (Ksp = 3.3 × 10⁻⁹), freeing surfactant molecules to foam."
+    }
+  ],
+  "steps": [
+    {
+      "id": 1,
+      "title": "Measure Ingredients",
+      "caption": "Weigh dry chemical salts and dispense liquid reagents on an analytical balance.",
+      "scene": "measure",
+      "gif": "process/01-measure.gif",
+      "apparatus": "Digital analytical balance, tare watch glass, stainless spatula, graduated cylinder",
+      "observation": "Tare zeroing, gradual mass stabilization, and powder containment.",
+      "scientificRole": "Establishes accurate stoichiometric proportions of builders and surfactants.",
+      "note": "Shown mass (5.00 g) is illustrative; refer to lab manual for exact quantities."
+    },
+    {
+      "id": 2,
+      "title": "Dissolve in Distilled Water",
+      "caption": "Transfer solid builders and hydrotrope into pure distilled water solvent.",
+      "scene": "dissolve",
+      "gif": "process/02-dissolve.gif",
+      "apparatus": "Borosilicate glass beaker, glass stirring rod, polyethylene wash bottle",
+      "observation": "Crystal wetting, downward cascading solute streams, and initial solution clearing.",
+      "scientificRole": "Initiates solvation in an ion-free medium preventing premature calcium precipitation.",
+      "note": "Distilled water ensures zero mineral interference."
+    },
+    {
+      "id": 3,
+      "title": "Continuous Mechanical Mixing",
+      "caption": "Stir steadily to form a uniform vortex, distributing surfactant micelles evenly.",
+      "scene": "mixing",
+      "gif": "process/03-mixing.gif",
+      "apparatus": "Overhead mechanical agitator / magnetic stirrer, PTFE stir bar, borosilicate vessel",
+      "observation": "Vortex funnel depth, rotational streamlines, and controlled boundary foam.",
+      "scientificRole": "Promotes surfactant micelle alignment and uniform dispersion without excess aeration.",
+      "note": "Moderate RPM avoids unwanted foam entrapment."
+    },
+    {
+      "id": 4,
+      "title": "Controlled Heating",
+      "caption": "Gently warm the aqueous solution between 45°C and 55°C on a hot plate.",
+      "scene": "heating",
+      "gif": "process/04-heating.gif",
+      "apparatus": "Thermostatic ceramic hot plate, calibrated mercury probe (45°C - 55°C), heat mat",
+      "observation": "Thermal expansion, convective fluid plumes, and complete crystal clearance.",
+      "scientificRole": "Overcomes dissolution activation barrier and accelerates saponification equilibrium.",
+      "note": "Temperature strictly monitored at 45°C - 55°C to avoid thermal decomposition."
+    },
+    {
+      "id": 5,
+      "title": "Stabilization & Cooling",
+      "caption": "Allow the formulation to settle naturally to 25°C ambient temperature.",
+      "scene": "cooling",
+      "gif": "process/05-cooling.gif",
+      "apparatus": "Heat-resistant bench pad, watch glass cover, digital thermometer probe",
+      "observation": "Thermal vapor subsidence, fluid viscosity stabilization, and quiescent settling.",
+      "scientificRole": "Relaxes thermal kinetic agitation allowing micelles to stabilize prior to filtration.",
+      "note": "Cooling must be gradual to prevent thermal shock crystallization."
+    },
+    {
+      "id": 6,
+      "title": "Gravity Filtration",
+      "caption": "Pass liquid through fluted filter paper to capture undissolved residues.",
+      "scene": "filtration",
+      "gif": "process/06-filtration.gif",
+      "apparatus": "Conical glass funnel, qualitative Whatman filter paper, receiving Erlenmeyer flask",
+      "observation": "Gravitational drip rate, sediment retention on cellulose, and filtrate clarity.",
+      "scientificRole": "Removes trace particulate matter ensuring high optical clarity and shelf stability.",
+      "note": "Ensures commercial-grade optical brilliance."
+    },
+    {
+      "id": 7,
+      "title": "Final Product Bottling",
+      "caption": "Transfer the finished sparkling liquid detergent into a dispenser bottle.",
+      "scene": "bottling",
+      "gif": "process/07-bottling.gif",
+      "apparatus": "High-density polyethylene dispenser bottle, hermetic pump cap, measurement cylinder",
+      "observation": "Smooth viscous fluid discharge, meniscus leveling, lather formation, and closure seal.",
+      "scientificRole": "Encloses final stabilized liquid detergent ready for quality control evaluation.",
+      "note": "Product is prepared for evaluation; not commercially certified."
+    }
+  ],
+  "flow": {
+    "inputs": [
+      {
+        "id": "na2co3",
+        "name": "Sodium carbonate",
+        "formula": "Na₂CO₃",
+        "role": "Builder"
+      },
+      {
+        "id": "scs",
+        "name": "SCS",
+        "formula": "Hydrotrope",
+        "role": "Solubilizer"
+      },
+      {
+        "id": "nacl",
+        "name": "Sodium chloride",
+        "formula": "NaCl",
+        "role": "Thickener"
+      },
+      {
+        "id": "glycerine",
+        "name": "Glycerine",
+        "formula": "C₃H₈O₃",
+        "role": "Humectant"
+      },
+      {
+        "id": "water",
+        "name": "Distilled H₂O",
+        "formula": "H₂O",
+        "role": "Solvent"
+      },
+      {
+        "id": "cuso4",
+        "name": "Copper sulfate",
+        "formula": "CuSO₄",
+        "role": "Additive"
+      },
+      {
+        "id": "naoh",
+        "name": "Sodium hydroxide",
+        "formula": "NaOH",
+        "role": "Alkali"
+      }
+    ],
+    "stages": [
+      {
+        "id": "mixing",
+        "title": "1. Mixing",
+        "desc": "All 7 precursors converge into the initial dissolution phase under mechanical agitation."
+      },
+      {
+        "id": "heating",
+        "title": "2. Heating",
+        "desc": "Controlled thermal energy activates complete solvation and accelerates neutralization."
+      },
+      {
+        "id": "filtration",
+        "title": "3. Filtration",
+        "desc": "Gravity-fed fluted paper removes microscopic particulate matter, delivering clarity."
+      },
+      {
+        "id": "product",
+        "title": "4. Liquid Detergent",
+        "desc": "Final translucent, homogeneous, viscously tuned liquid detergent ready for use."
+      }
+    ]
+  },
+  "applications": [
+    {
+      "id": "laundry",
+      "title": "Fabric & Laundry Care",
+      "icon": "shirt",
+      "desc": "Penetrates woven textile fibers swiftly without leaving chalky residues, effective in cold or warm wash cycles."
+    },
+    {
+      "id": "dishwashing",
+      "title": "Manual Dishwashing",
+      "icon": "utensils",
+      "desc": "Emulsifies heavy cooking greases and animal fats effortlessly while remaining gentle on hands due to glycerine."
+    },
+    {
+      "id": "surface",
+      "title": "Floor & Hard Surface Cleaning",
+      "icon": "sparkles",
+      "desc": "Removes atmospheric grime and oil slicks from glazed tiles, quartz, and polished concrete without etching."
+    },
+    {
+      "id": "handwash",
+      "title": "Institutional Hand Wash",
+      "icon": "hand",
+      "desc": "Buffered alkaline detergent formulated for workshop mechanics and lab technicians needing heavy-duty soil removal."
+    },
+    {
+      "id": "industrial",
+      "title": "Industrial Equipment Degreasing",
+      "icon": "gear",
+      "desc": "Cleans machined parts and laboratory glassware by lifting synthetic lubricating oils and cutting fluids."
+    }
+  ],
+  "advantages": [
+    {
+      "title": "Instant Water Solubility",
+      "desc": "Dissolves immediately in wash water without clumping or leaving powdery white deposits on fabrics."
+    },
+    {
+      "title": "Low-Cost Accessible Raw Materials",
+      "desc": "Synthesized from readily obtainable industrial commodities like soda ash, common salt, and water."
+    },
+    {
+      "title": "Exceptional Hard-Water Performance",
+      "desc": "Active sodium carbonate builder complexes calcium and magnesium ions before detergent is consumed."
+    },
+    {
+      "title": "Simple Energy-Efficient Preparation",
+      "desc": "Straightforward benchtop synthesis requiring only basic glassware, mild heating, and standard filtration."
+    }
+  ],
+  "disadvantages": [
+    {
+      "title": "Potential Skin Irritation",
+      "desc": "Unadjusted high alkaline pH can strip natural cutaneous sebum, requiring humectants like glycerine."
+    },
+    {
+      "title": "Risk to Delicate Protein Fibers",
+      "desc": "Alkaline detergent solutions can degrade keratin and fibroin structures in natural wool and pure silk."
+    },
+    {
+      "title": "Aquatic Ecotoxicity from Runoff",
+      "desc": "Discharge of concentrated builders and additives can increase chemical oxygen demand in open waterways."
+    },
+    {
+      "title": "Hazardous Reagent Handling",
+      "desc": "Strong caustic alkalis like solid NaOH require strict PPE compliance to prevent corrosive chemical burns."
+    }
+  ],
+  "faqs": [
+    {
+      "q": "Why is controlled heating necessary during the synthesis?",
+      "a": "Gentle heating (45°C to 55°C) enhances the kinetic solubility of both organic surfactants and inorganic salts, preventing saturation crystallization and accelerating neutralization."
+    },
+    {
+      "q": "What is the specific purpose of the filtration step?",
+      "a": "Gravity filtration through fluted filter paper isolates insoluble impurities, unreacted carbonates, and dust particulates, giving the final product its clear, commercial-grade appearance."
+    },
+    {
+      "q": "How does sodium chloride (NaCl) act as a thickener in liquid detergent?",
+      "a": "Sodium chloride introduces free Na⁺ counter-ions that shield the electrostatic repulsions between anionic surfactant headgroups. This allows the spherical micelles to deform and entangle into elongated, worm-like micelles, markedly increasing bulk fluid viscosity."
+    },
+    {
+      "q": "Why is distilled water strictly required instead of tap water?",
+      "a": "Tap water contains dissolved divalent ions (Ca²⁺ and Mg²⁺). If used during synthesis, these ions instantly precipitate insoluble calcium soap curds, clouding the liquid and permanently wasting surfactant power before bottling."
+    },
+    {
+      "q": "What role does glycerine play in the detergent formulation?",
+      "a": "Glycerine (propane-1,2,3-triol) contains three hydrophilic hydroxyl (-OH) groups that draw and bind water molecules. It serves as an emollient and humectant, counteracting the defatting effect of strong detergents on human skin."
+    },
+    {
+      "q": "What essential safety precautions must be followed when handling sodium hydroxide?",
+      "a": "Always wear splash-resistant chemical goggles, nitrile gloves, and a buttoned lab coat. Never add water to concentrated NaOH pellets—always add solid pellets incrementally to water with constant stirring to dissipate the exothermic heat of hydration."
+    },
+    {
+      "q": "How should lab detergent waste and chemical byproducts be disposed of?",
+      "a": "Neutralize alkaline residues with dilute acetic acid before drain disposal with copious water, according to institutional lab safety protocols. Copper-bearing residues must be placed into designated heavy-metal waste containers."
+    },
+    {
+      "q": "How should the final liquid detergent product be stored for maximum stability?",
+      "a": "Store in a tightly capped HDPE or glass bottle at ambient room temperature (15°C–25°C), shielded from direct sunlight and extreme freezing to avoid phase separation or precipitation."
+    }
+  ],
+  "quiz": [
+    {
+      "id": "q1",
+      "q": "Which ingredient in the formulation raises alkalinity and softens incoming hard water?",
+      "options": [
+        "Sodium carbonate (Na2CO3)",
+        "Sodium chloride (NaCl)",
+        "Glycerine (C3H8O3)",
+        "Distilled water (H2O)"
+      ],
+      "answer_index": 0,
+      "explanation": "Sodium carbonate acts as an alkaline builder. It provides OH⁻ buffering and precipitates Ca²⁺ ions as insoluble CaCO₃."
+    },
+    {
+      "id": "q2",
+      "q": "In liquid detergent chemistry, sodium chloride (NaCl) primarily functions as a:",
+      "options": [
+        "Biocidal preservative",
+        "Thickener (viscosity adjuster)",
+        "Primary surfactant",
+        "Optical brightener"
+      ],
+      "answer_index": 1,
+      "explanation": "NaCl compresses the electrostatic double layer of surfactant micelles, driving rod-like micelle transition and elevating liquid viscosity."
+    },
+    {
+      "id": "q3",
+      "q": "Glycerine is incorporated into the liquid detergent formulation primarily as a:",
+      "options": [
+        "Humectant and emollient",
+        "Bleaching catalyst",
+        "Strong oxidant",
+        "Foam destabilizer"
+      ],
+      "answer_index": 0,
+      "explanation": "Glycerine attracts and retains moisture through its tri-hydroxy structure, protecting human skin from excessive lipid stripping."
+    },
+    {
+      "id": "q4",
+      "q": "Sodium hydroxide (NaOH) is classified in the laboratory as a:",
+      "options": [
+        "Weak acidic buffer",
+        "Strong, highly corrosive alkali",
+        "Neutral inert filler",
+        "Hydrotropic surfactant"
+      ],
+      "answer_index": 1,
+      "explanation": "NaOH is a strong base with extreme caustic properties, dissociating completely into Na⁺ and OH⁻ ions and generating exothermic heat upon hydration."
+    },
+    {
+      "id": "q5",
+      "q": "Why is distilled water preferred over regular municipal tap water for this experiment?",
+      "options": [
+        "It boils at a significantly lower temperature",
+        "It contains no dissolved calcium or magnesium minerals that interfere with lathering",
+        "It increases product acidity",
+        "It produces colored fluorescent emissions"
+      ],
+      "answer_index": 1,
+      "explanation": "Distilled water is free from multivalent cations like Ca²⁺ and Mg²⁺, preventing premature precipitation of insoluble calcium soaps."
+    },
+    {
+      "id": "q6",
+      "q": "What is the primary objective of the gravity filtration step in the experimental procedure?",
+      "options": [
+        "To separate liquid detergent into chemical fractions",
+        "To remove undissolved solid flakes and impurities for optical clarity",
+        "To cool the boiling liquid to freezing point",
+        "To evaporate the solvent water"
+      ],
+      "answer_index": 1,
+      "explanation": "Filtration isolates particulate matter and unreacted salts, ensuring the finished liquid detergent remains clear and free of grit."
+    },
+    {
+      "id": "q7",
+      "q": "Which protective personal equipment (PPE) is mandatory before starting this chemical experiment?",
+      "options": [
+        "Goggles, chemical-resistant gloves, and a buttoned lab coat",
+        "Only latex gloves",
+        "Dust mask alone",
+        "Ordinary sunglasses and casual clothing"
+      ],
+      "answer_index": 0,
+      "explanation": "Standard chemistry lab PPE requires chemical splash goggles, nitrile or neoprene gloves, and a full-length lab coat to prevent chemical splash injuries."
+    },
+    {
+      "id": "q8",
+      "q": "What is the function of SCS (Sodium cumene sulfonate) in liquid detergent formulas?",
+      "options": [
+        "Insoluble pigment",
+        "Hydrotrope that prevents phase separation and maintains optical clarity",
+        "Enzymatic stain remover",
+        "Fabric stiffener"
+      ],
+      "answer_index": 1,
+      "explanation": "SCS is a hydrotrope that boosts surfactant solubility in aqueous systems, preventing cloudiness or phase stratification."
+    },
+    {
+      "id": "q9",
+      "q": "What is the white precipitate formed when sodium carbonate builder meets calcium ions in hard water?",
+      "options": [
+        "Calcium carbonate (CaCO3)",
+        "Sodium sulfate (Na2SO4)",
+        "Sodium bicarbonate (NaHCO3)",
+        "Copper carbonate (CuCO3)"
+      ],
+      "answer_index": 0,
+      "explanation": "Ca²⁺ + CO₃²⁻ -> CaCO₃(s)↓. Calcium carbonate is an insoluble mineral precipitate, successfully stripping hardness ions from the solution."
+    },
+    {
+      "id": "q10",
+      "q": "If sodium hydroxide (NaOH) accidentally comes into direct contact with skin, what is the immediate first-aid action?",
+      "options": [
+        "Apply concentrated acid immediately to neutralize it",
+        "Rinse immediately with copious running water for at least 15 minutes and inform the instructor",
+        "Cover with an airtight bandage without washing",
+        "Wait for the reaction to cool down"
+      ],
+      "answer_index": 1,
+      "explanation": "Immediate, continuous flushing with copious cool tap water for 15+ minutes removes caustic hydroxide ions. Never apply concentrated acid, as the resulting neutralization generates severe secondary thermal burns."
+    }
+  ],
+  "formulation_summary": {
+    "total_ingredients": 7,
+    "solid_count": 5,
+    "liquid_count": 2,
+    "solids": [
+      {
+        "name": "Sodium Lauryl Sulphate (SLS)",
+        "formula": "C₁₂H₂₅SO₄Na",
+        "category": "Surfactant",
+        "quantity": "2 g",
+        "unit": "g",
+        "apparatus": "Analytical Balance"
+      },
+      {
+        "name": "Sodium Carbonate",
+        "formula": "Na₂CO₃",
+        "category": "Builder",
+        "quantity": "2 g",
+        "unit": "g",
+        "apparatus": "Analytical Balance"
+      },
+      {
+        "name": "Sodium Chloride",
+        "formula": "NaCl",
+        "category": "Thickener",
+        "quantity": "2 g",
+        "unit": "g",
+        "apparatus": "Analytical Balance"
+      },
+      {
+        "name": "Copper Sulphate",
+        "formula": "CuSO₄",
+        "category": "Additive",
+        "quantity": "2 g",
+        "unit": "g",
+        "apparatus": "Analytical Balance"
+      },
+      {
+        "name": "Sodium Hydroxide",
+        "formula": "NaOH",
+        "category": "Alkaline Agent",
+        "quantity": "2 g",
+        "unit": "g",
+        "apparatus": "Analytical Balance"
+      }
+    ],
+    "liquids": [
+      {
+        "name": "Distilled Water",
+        "formula": "H₂O",
+        "category": "Solvent",
+        "quantity": "30 ml",
+        "unit": "ml",
+        "apparatus": "Measuring Cylinder"
+      },
+      {
+        "name": "Glycerine",
+        "formula": "C₃H₈O₃",
+        "category": "Humectant",
+        "quantity": "5 ml",
+        "unit": "ml",
+        "apparatus": "Graduated Cylinder"
+      }
+    ],
+    "rule": "Mass (grams) and Volume (millilitres) are distinct physical dimensions. They are never summed into a single composite total."
+  },
+  "actual_observations": [
+    {
+      "sr": 1,
+      "parameter": "Appearance / Colour",
+      "observed": "Dark blue-green liquid.",
+      "note": "Confirmed physical appearance of prepared prototype (Figure 4.6 & 5.1)."
+    },
+    {
+      "sr": 2,
+      "parameter": "Odour",
+      "observed": "Characteristic chemical odour (no perfume added).",
+      "note": "Raw formulation baseline without synthetic masking fragrances."
+    },
+    {
+      "sr": 3,
+      "parameter": "Uniformity / Homogeneity",
+      "observed": "Dark blue-green mixture; uniformity to be confirmed through testing.",
+      "note": "Visually consistent; instrumental homogeneity evaluation required."
+    },
+    {
+      "sr": 4,
+      "parameter": "pH",
+      "observed": "To be measured using a pH meter or pH paper.",
+      "note": "Preserved as stated in report; no speculative or invented values."
+    },
+    {
+      "sr": 5,
+      "parameter": "Foam Formation and Stability",
+      "observed": "To be evaluated experimentally.",
+      "note": "Standardized cylinder shaking test to be performed."
+    },
+    {
+      "sr": 6,
+      "parameter": "Viscosity (Pourability)",
+      "observed": "Liquid formulation; viscosity to be measured.",
+      "note": "Flow behavior observed; rotational viscometry pending."
+    },
+    {
+      "sr": 7,
+      "parameter": "Cleaning Ability",
+      "observed": "To be evaluated through a controlled cleaning test after safety assessment.",
+      "note": "Evaluation protocol pending lab safety clearance."
+    }
+  ],
+  "gallery_records": [
+    {
+      "id": "setup-1",
+      "category": "setup",
+      "category_name": "Experimental Setup",
+      "title": "Complete Experimental Setup / Prototype",
+      "caption": "Laboratory arrangement consisting of measurement balance, mixing vessel, heating-stirring apparatus, gravity filtration funnel, and clean storage containers.",
+      "report_ref": "Figure 4.1 – Complete experimental set-up / prototype (Page 19)",
+      "image": "/static/media/gallery/setup-prototype.jpg",
+      "page": 19
+    },
+    {
+      "id": "meas-1",
+      "category": "measurement",
+      "category_name": "Ingredient Measurement",
+      "title": "Raw Materials and Analytical Balance",
+      "caption": "Seven laboratory chemicals (Distilled Water, SLS, Na₂CO₃, NaCl, Glycerine, CuSO₄, and NaOH) accurately proportioned using analytical balance and graduated cylinders.",
+      "report_ref": "Figure 4.2 – Raw Materials Used (Page 19)",
+      "image": "/static/media/gallery/measurement-raw-materials.jpg",
+      "page": 19
+    },
+    {
+      "id": "mix-1",
+      "category": "mixing",
+      "category_name": "Mixing Process",
+      "title": "Controlled Mixing of Ingredients",
+      "caption": "Surfactant dissolution in distilled water followed by sequential builder and humectant incorporation with steady manual glass stirring to avoid excessive froth.",
+      "report_ref": "Figure 4.3 – Mixing of ingredients (Page 20)",
+      "image": "/static/media/gallery/mixing-beaker.jpg",
+      "page": 20
+    },
+    {
+      "id": "heat-1",
+      "category": "heating",
+      "category_name": "Heating and Stirring",
+      "title": "Magnetic Stirrer with Controlled Heating",
+      "caption": "Continuous agitation on magnetic hot plate providing gentle thermal energy to fully dissolve solid precursors while maintaining uniform reaction kinetics.",
+      "report_ref": "Figure 4.4 – Heating & Stirring of the mixture (Page 20)",
+      "image": "/static/media/gallery/heating-stirring-magnetic.jpg",
+      "page": 20
+    },
+    {
+      "id": "filt-1",
+      "category": "filtration",
+      "category_name": "Filtration",
+      "title": "Filtration of Prepared Mixture",
+      "caption": "Passing the mixture through conical funnel and filter paper to isolate undissolved particles and insoluble residues, isolating raw sample (S1).",
+      "report_ref": "Figure 4.5 – Filtration of the mixture (Page 21)",
+      "image": "/static/media/gallery/filtration-funnel.jpg",
+      "page": 21
+    },
+    {
+      "id": "prod-1",
+      "category": "product",
+      "category_name": "Final Product",
+      "title": "Final Liquid Detergent in Storage Container",
+      "caption": "Dark blue-green liquid formulation (S2) collected and transferred into a clean, hermetically sealed, properly labeled laboratory container.",
+      "report_ref": "Figure 4.6 – Final liquid Detergent in storage container (Page 21)",
+      "image": "/static/media/gallery/final-product-storage.jpg",
+      "page": 21
+    },
+    {
+      "id": "prod-2",
+      "category": "product",
+      "category_name": "Final Product",
+      "title": "Final Prepared Liquid Soap Sample",
+      "caption": "The clarified dark blue-green liquid detergent prototype ready for physical and chemical quality evaluation.",
+      "report_ref": "Figure 5.1 – Final prepared liquid soap (Page 22)",
+      "image": "/static/media/gallery/final-product-sample.jpg",
+      "page": 22
+    },
+    {
+      "id": "team-1",
+      "category": "team",
+      "category_name": "Team",
+      "title": "Complete Project Team Photograph",
+      "caption": "Student research team at MIT Academy of Engineering showcasing the prepared liquid detergent formulation alongside experimental apparatus.",
+      "report_ref": "Report Page 22 – Project Research Group",
+      "image": "/static/media/gallery/team-group.jpg",
+      "page": 22
+    }
+  ],
+  "experimental_videos": [
+    {
+      "id": "v1",
+      "title": "1. Ingredient Measurement",
+      "desc": "Analytical weighing of solid chemicals on digital balance and volumetric cylinder measurement of distilled water and glycerine.",
+      "video": "/static/media/videos/video-01-ingredient-measurement.mp4",
+      "poster": "/static/media/gallery/measurement-raw-materials.jpg",
+      "status": "placeholder",
+      "filename": "video-01-ingredient-measurement.mp4",
+      "duration": "Ready for Upload"
+    },
+    {
+      "id": "v2",
+      "title": "2. Mixing Process",
+      "desc": "Gradual addition of Sodium Lauryl Sulphate (SLS) to distilled water under gentle manual glass rod agitation to prevent excessive foaming.",
+      "video": "/static/media/videos/video-02-mixing-process.mp4",
+      "poster": "/static/media/gallery/mixing-beaker.jpg",
+      "status": "available",
+      "filename": "video-02-mixing-process.mp4",
+      "duration": "Lab Recording"
+    },
+    {
+      "id": "v3",
+      "title": "3. Heating and Stirring",
+      "desc": "Controlled thermal processing on magnetic stirrer with heater ensuring uniform dispersion and kinetic dissolution of reagents.",
+      "video": "/static/media/videos/video-03-heating-and-stirring.mp4",
+      "poster": "/static/media/gallery/heating-stirring-magnetic.jpg",
+      "status": "available",
+      "filename": "video-03-heating-and-stirring.mp4",
+      "duration": "Lab Recording"
+    },
+    {
+      "id": "v4",
+      "title": "4. Filtration",
+      "desc": "Gravity separation through conical funnel and filter paper to isolate insoluble residues and deliver a uniform liquid formulation.",
+      "video": "/static/media/videos/video-04-filtration.mp4",
+      "poster": "/static/media/gallery/filtration-funnel.jpg",
+      "status": "placeholder",
+      "filename": "video-04-filtration.mp4",
+      "duration": "Ready for Upload"
+    },
+    {
+      "id": "v5",
+      "title": "5. Final Product",
+      "desc": "Inspection of finished dark blue-green liquid detergent, pourability assessment, and storage container transfer.",
+      "video": "/static/media/videos/video-05-final-product.mp4",
+      "poster": "/static/media/gallery/final-product-storage.jpg",
+      "status": "placeholder",
+      "filename": "video-05-final-product.mp4",
+      "duration": "Ready for Upload"
+    }
+  ],
+  "procedure_9_stages": [
+    {
+      "stage": 1,
+      "title": "Measuring Ingredients",
+      "caption": "Accurately measure 30 ml distilled water, 2 g SLS, 2 g Na₂CO₃, 2 g NaCl, 5 ml glycerine, 2 g CuSO₄, and 2 g NaOH.",
+      "apparatus": "Weighing balance, measuring cylinder, tare dishes",
+      "icon": "scale"
+    },
+    {
+      "stage": 2,
+      "title": "Adding SLS to Distilled Water",
+      "caption": "Gradually introduce 2 g SLS into 30 ml distilled water while stirring gently to minimize excessive foam.",
+      "apparatus": "Borosilicate beaker, glass stirrer",
+      "icon": "droplet"
+    },
+    {
+      "stage": 3,
+      "title": "Adding Sodium Carbonate & Glycerine",
+      "caption": "Add 2 g Na₂CO₃ builder for alkalinity and 5 ml glycerine humectant, stirring to distribute evenly.",
+      "apparatus": "Beaker, glass rod",
+      "icon": "layers"
+    },
+    {
+      "stage": 4,
+      "title": "Adding Copper Sulphate",
+      "caption": "Incorporate 2 g CuSO₄ experimental additive, observing progressive color transformation to dark blue-green.",
+      "apparatus": "Beaker, spatula",
+      "icon": "sparkle"
+    },
+    {
+      "stage": 5,
+      "title": "Adjusting Viscosity with NaCl",
+      "caption": "Add 2 g NaCl under continuous stirring to shield surfactant charges and build desired liquid viscosity.",
+      "apparatus": "Beaker, stirring rod",
+      "icon": "sliders"
+    },
+    {
+      "stage": 6,
+      "title": "pH Adjustment using NaOH",
+      "caption": "Handle 2 g NaOH strictly under laboratory supervision to establish optimal alkaline cleaning conditions.",
+      "apparatus": "Beaker, PPE, watch glass",
+      "icon": "shield"
+    },
+    {
+      "stage": 7,
+      "title": "Mixing and Controlled Heating",
+      "caption": "Place on magnetic stirrer with heater; maintain controlled warmth and continuous stirring for complete dissolution.",
+      "apparatus": "Magnetic stirrer with heating facility",
+      "icon": "flame"
+    },
+    {
+      "stage": 8,
+      "title": "Filtration",
+      "caption": "Filter through conical funnel with filter paper to remove any undissolved particles or precipitates (sample S1).",
+      "apparatus": "Filtration funnel, filter paper, flask",
+      "icon": "filter"
+    },
+    {
+      "stage": 9,
+      "title": "Final Product Collection",
+      "caption": "Transfer the prepared dark blue-green liquid detergent (S2) into a clean, labeled storage container for testing.",
+      "apparatus": "Labeled storage container",
+      "icon": "box"
+    }
+  ]
+}

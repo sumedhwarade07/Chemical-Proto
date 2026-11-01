@@ -1,0 +1,487 @@
+{% extends 'base.html' %}
+
+{% block title %}Chemical Ingredients & Reactions | {{ content.site.title }}{% endblock %}
+
+{% block content %}
+<!-- Subtle Floating Molecular Background Decor -->
+<div class="molecular-bg" aria-hidden="true">
+  <svg class="mol-item mol-1" viewBox="0 0 100 100" width="80" height="80">
+    <circle cx="30" cy="30" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    <circle cx="70" cy="30" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    <circle cx="50" cy="70" r="8" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    <line x1="38" y1="30" x2="64" y2="30" stroke="currentColor" stroke-width="1.5"/>
+    <line x1="36" y1="38" x2="45" y2="63" stroke="currentColor" stroke-width="1.5"/>
+    <line x1="66" y1="35" x2="55" y2="63" stroke="currentColor" stroke-width="1.5"/>
+  </svg>
+  <svg class="mol-item mol-2" viewBox="0 0 100 100" width="70" height="70">
+    <polygon points="50,15 80,32 80,68 50,85 20,68 20,32" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    <circle cx="50" cy="50" r="16" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="3 3"/>
+  </svg>
+  <svg class="mol-item mol-3" viewBox="0 0 100 100" width="60" height="60">
+    <circle cx="50" cy="40" r="12" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    <circle cx="30" cy="65" r="7" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    <circle cx="70" cy="65" r="7" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    <line x1="42" y1="48" x2="35" y2="59" stroke="currentColor" stroke-width="1.5"/>
+    <line x1="58" y1="48" x2="65" y2="59" stroke="currentColor" stroke-width="1.5"/>
+  </svg>
+</div>
+
+<div class="container" style="padding-top: 2rem;">
+  <div class="page-header ingredients-header">
+    <span class="badge badge-aqua anim-badge">Formulation Chemistry</span>
+    <h1 class="anim-title">Laboratory<br class="mobile-only-break"> Ingredients &amp; Reactions</h1>
+    <p class="anim-sub">Detailed chemical functions, safety hazard profiles, stoichiometry placeholders, and reaction mechanisms.</p>
+  </div>
+
+  <!-- Reusable Safety Banner -->
+  {% include 'partials/safety-banner.html' %}
+
+  <!-- NEW: Experimental Formulation Summary (Table 3.1 Data) -->
+  <section class="formulation-summary-section" aria-label="Experimental Formulation Summary">
+    <div class="card summary-card">
+      <div class="summary-header">
+        <div class="summary-title-area">
+          <span class="badge badge-aqua">Table 3.1 Report Data</span>
+          <h2 style="font-size: 1.5rem; color: var(--deep); margin: 0.35rem 0 0.2rem;">Experimental Formulation Summary</h2>
+          <p style="font-size: 0.88rem; color: var(--ink-light); margin: 0;">
+            Exact chemical proportions utilized in the laboratory synthesis at MIT Academy of Engineering.
+          </p>
+        </div>
+        <div class="summary-stat-pills">
+          <div class="stat-pill">
+            <span class="stat-pill-num">{{ content.formulation_summary.total_ingredients }}</span>
+            <span class="stat-pill-label">Total Ingredients</span>
+          </div>
+          <div class="stat-pill solid-pill">
+            <span class="stat-pill-num">{{ content.formulation_summary.solid_count }}</span>
+            <span class="stat-pill-label">Solid Reagents (g)</span>
+          </div>
+          <div class="stat-pill liquid-pill">
+            <span class="stat-pill-num">{{ content.formulation_summary.liquid_count }}</span>
+            <span class="stat-pill-label">Liquid Reagents (ml)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Individual Quantities Table / Grid -->
+      <div class="summary-quantities-grid">
+        <div class="summary-subcolumn">
+          <div class="subcolumn-header">
+            <span class="indicator-dot solid-dot"></span>
+            <h4>Solid Ingredients (5) &bull; Analytical Balance</h4>
+          </div>
+          <ul class="summary-items-list">
+            {% for s in content.formulation_summary.solids %}
+            <li class="summary-item-row">
+              <span class="item-name"><strong>{{ s.name }}</strong> ({{ s.category }})</span>
+              <span class="item-qty-badge solid-badge">{{ s.quantity }}</span>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        <div class="summary-subcolumn">
+          <div class="subcolumn-header">
+            <span class="indicator-dot liquid-dot"></span>
+            <h4>Liquid Ingredients (2) &bull; Graduated Cylinder</h4>
+          </div>
+          <ul class="summary-items-list">
+            {% for l in content.formulation_summary.liquids %}
+            <li class="summary-item-row">
+              <span class="item-name"><strong>{{ l.name }}</strong> ({{ l.category }})</span>
+              <span class="item-qty-badge liquid-badge">{{ l.quantity }}</span>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+
+      <!-- Critical Measurement Rule Notice -->
+      <div class="summary-rule-notice">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+        </svg>
+        <span>
+          <strong>Scientific Measurement Rule:</strong> Mass (grams, g) and Volume (millilitres, ml) are distinct physical dimensions.
+          Solid components are weighed on analytical balances; liquid components are dispensed volumetrically.
+          <strong>Never combine grams and millilitres into one total.</strong>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Filter Chip Row -->
+  <div class="filter-chips-row" id="ingredient-filters" role="tablist" aria-label="Ingredient Category Filter">
+    <button class="filter-chip active" data-filter="all"><span class="chip-dot"></span> All (7)</button>
+    <button class="filter-chip" data-filter="Surfactant"><span class="chip-dot"></span> Surfactant</button>
+    <button class="filter-chip" data-filter="Builder"><span class="chip-dot"></span> Builder</button>
+    <button class="filter-chip" data-filter="Thickener"><span class="chip-dot"></span> Thickener</button>
+    <button class="filter-chip" data-filter="Humectant"><span class="chip-dot"></span> Humectant</button>
+    <button class="filter-chip" data-filter="Solvent"><span class="chip-dot"></span> Solvent</button>
+    <button class="filter-chip" data-filter="Additive"><span class="chip-dot"></span> Additive</button>
+    <button class="filter-chip" data-filter="Alkaline Agent"><span class="chip-dot"></span> Alkaline Agent</button>
+  </div>
+
+  <!-- 7 Ingredient Cards -->
+  <div class="ingredients-grid" id="ingredients-container">
+    {% for item in content.ingredients %}
+    <div class="ingredient-card" data-category="{{ item.category }}" id="card-{{ item.slug }}">
+      <div class="ingredient-top">
+        <div class="ingredient-icon-box stage-{{ item.slug }}" title="{{ item.name }} Scientific Mechanism">
+          {% if item.slug == 'sodium-carbonate' %}
+            <!-- Sodium Carbonate: Dissolution & Floating Ions -->
+            <svg viewBox="0 0 64 64" class="sci-svg sci-carbonate" width="50" height="50" fill="none">
+              <polygon points="32,14 48,23 48,41 32,50 16,41 16,23" fill="rgba(62,193,211,0.16)" stroke="#3ec1d3" stroke-width="1.4" stroke-dasharray="2 2" class="crystal-core"/>
+              <text x="32" y="35" fill="#0f4c5c" font-size="8.5" font-weight="700" text-anchor="middle">CO₃²⁻</text>
+              <g class="ion-particle ion-p1">
+                <circle cx="18" cy="18" r="6" fill="#3ec1d3"/>
+                <text x="18" y="20.5" fill="#ffffff" font-size="6.5" font-weight="bold" text-anchor="middle">Na⁺</text>
+              </g>
+              <g class="ion-particle ion-p2">
+                <circle cx="48" cy="18" r="6" fill="#3ec1d3"/>
+                <text x="48" y="20.5" fill="#ffffff" font-size="6.5" font-weight="bold" text-anchor="middle">Na⁺</text>
+              </g>
+              <g class="ion-particle ion-p3">
+                <circle cx="46" cy="46" r="4.5" fill="#0f4c5c" opacity="0.8"/>
+                <text x="46" y="48.5" fill="#ffffff" font-size="5" font-weight="bold" text-anchor="middle">+</text>
+              </g>
+              <path d="M12 36l1.2-2.5 1.2 2.5-2.5 1.2z" fill="#ffb703" class="sparkle sp-1"/>
+              <path d="M50 32l1.2-2.5 1.2 2.5-2.5 1.2z" fill="#3ec1d3" class="sparkle sp-2"/>
+            </svg>
+          {% elif item.slug == 'sodium-lauryl-sulphate' or item.slug == 'scs' %}
+            <!-- SLS: Surfactant Droplet & Micelle Dispersion -->
+            <svg viewBox="0 0 64 64" class="sci-svg sci-scs" width="50" height="50" fill="none">
+              <circle cx="32" cy="32" r="13" stroke="#3ec1d3" stroke-width="1" opacity="0.4" class="dispersion-ring ring-1"/>
+              <circle cx="32" cy="32" r="21" stroke="#3ec1d3" stroke-width="1" opacity="0.2" class="dispersion-ring ring-2"/>
+              <circle cx="32" cy="32" r="7.5" fill="#0f4c5c" class="micelle-core"/>
+              <g class="radial-tails">
+                <path d="M32 24.5V16 M32 39.5V48 M24.5 32H16 M39.5 32H48 M26.5 26.5L20 20 M37.5 37.5L44 44 M26.5 37.5L20 44 M37.5 26.5L44 20" stroke="#3ec1d3" stroke-width="1.6" stroke-linecap="round"/>
+                <circle cx="32" cy="14" r="2.2" fill="#3ec1d3"/>
+                <circle cx="32" cy="50" r="2.2" fill="#3ec1d3"/>
+                <circle cx="14" cy="32" r="2.2" fill="#3ec1d3"/>
+                <circle cx="50" cy="32" r="2.2" fill="#3ec1d3"/>
+                <circle cx="18" cy="18" r="2" fill="#ffb703"/>
+                <circle cx="46" cy="46" r="2" fill="#ffb703"/>
+                <circle cx="18" cy="46" r="2" fill="#ffb703"/>
+                <circle cx="46" cy="18" r="2" fill="#ffb703"/>
+              </g>
+            </svg>
+          {% elif item.slug == 'sodium-chloride' %}
+            <!-- NaCl: Cubic Lattice & Ionic Shielding -->
+            <svg viewBox="0 0 64 64" class="sci-svg sci-nacl" width="50" height="50" fill="none">
+              <g class="lattice-mesh">
+                <path d="M18 18h28M18 32h28M18 46h28M18 18v28M32 18v28M46 18v28" stroke="rgba(15,76,92,0.3)" stroke-width="1.2"/>
+                <circle cx="32" cy="32" r="8" stroke="#3ec1d3" stroke-width="1" stroke-dasharray="2 2" class="shield-aura"/>
+                <circle cx="18" cy="18" r="4.5" fill="#0f4c5c"/>
+                <circle cx="32" cy="18" r="3.2" fill="#3ec1d3"/>
+                <circle cx="46" cy="18" r="4.5" fill="#0f4c5c"/>
+                <circle cx="18" cy="32" r="3.2" fill="#3ec1d3"/>
+                <circle cx="32" cy="32" r="5" fill="#0f4c5c"/>
+                <circle cx="46" cy="32" r="3.2" fill="#3ec1d3"/>
+                <circle cx="18" cy="46" r="4.5" fill="#0f4c5c"/>
+                <circle cx="32" cy="46" r="3.2" fill="#3ec1d3"/>
+                <circle cx="46" cy="46" r="4.5" fill="#0f4c5c"/>
+                <text x="32" y="34.5" fill="#ffffff" font-size="4.8" font-weight="bold" text-anchor="middle">Cl⁻</text>
+              </g>
+            </svg>
+          {% elif item.slug == 'glycerine' %}
+            <!-- Glycerine: Viscous Droplet & Meniscus Ripple -->
+            <svg viewBox="0 0 64 64" class="sci-svg sci-glycerine" width="50" height="50" fill="none">
+              <path d="M28 8h8v5l-2 3h-4l-2-3z" fill="#0f4c5c" opacity="0.6"/>
+              <path d="M32 18c-3 3-5 6.5-5 9.5a5 5 0 0 0 10 0c0-3-2-6.5-5-9.5z" fill="url(#glycGrad-{{ item.slug }})" class="viscous-droplet"/>
+              <path d="M14 49 Q32 46.5 50 49" stroke="#0f4c5c" stroke-width="1.4" opacity="0.4"/>
+              <ellipse cx="32" cy="49" rx="13" ry="3.8" stroke="#ffb703" stroke-width="1.2" opacity="0.6" class="meniscus-ripple r-1"/>
+              <ellipse cx="32" cy="49" rx="6" ry="1.8" stroke="#3ec1d3" stroke-width="1" opacity="0.8" class="meniscus-ripple r-2"/>
+              <defs>
+                <linearGradient id="glycGrad-{{ item.slug }}" x1="32" y1="18" x2="32" y2="28" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#ffb703"/>
+                  <stop offset="100%" stop-color="#d97706"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          {% elif item.slug == 'distilled-water' %}
+            <!-- Distilled Water: Pure Solvent & Micro-Bubbles -->
+            <svg viewBox="0 0 64 64" class="sci-svg sci-water" width="50" height="50" fill="none">
+              <path d="M16 16 v28 a10 10 0 0 0 10 10 h12 a10 10 0 0 0 10 -10 v-28" stroke="#0f4c5c" stroke-width="1.4" opacity="0.4"/>
+              <path d="M18 28 Q 25 25, 32 28 T 46 28" stroke="#3ec1d3" stroke-width="1.8" fill="none" class="aquatic-wave"/>
+              <path d="M18 28 Q 25 25, 32 28 T 46 28 V 44 a8 8 0 0 1 -8 8 H 26 a8 8 0 0 1 -8 -8 Z" fill="rgba(62,193,211,0.18)"/>
+              <circle cx="24" cy="44" r="2.2" fill="#3ec1d3" opacity="0.8" class="bubble b-1"/>
+              <circle cx="33" cy="46" r="2.8" fill="#3ec1d3" opacity="0.7" class="bubble b-2"/>
+              <circle cx="40" cy="42" r="1.8" fill="#3ec1d3" opacity="0.8" class="bubble b-3"/>
+              <circle cx="28" cy="36" r="1.5" fill="#3ec1d3" opacity="0.6" class="bubble b-4"/>
+            </svg>
+          {% elif item.slug == 'copper-sulphate' or item.slug == 'copper-sulfate' %}
+            <!-- Copper Sulphate: Blue Crystal Shimmer -->
+            <svg viewBox="0 0 64 64" class="sci-svg sci-copper" width="50" height="50" fill="none">
+              <circle cx="32" cy="32" r="16" fill="rgba(37,99,235,0.14)" class="blue-aura"/>
+              <g class="crystal-facets">
+                <polygon points="32,13 45,25 32,33 19,25" fill="#38bdf8"/>
+                <polygon points="19,25 32,33 32,49 19,41" fill="#0284c7"/>
+                <polygon points="45,25 32,33 32,49 45,41" fill="#1d4ed8"/>
+                <path d="M32 13v36 M19 25l26 0 M19 41l13 8 13-8" stroke="#ffffff" stroke-width="0.8" opacity="0.6"/>
+              </g>
+              <polygon points="26,16 38,16 30,48 18,48" fill="url(#facetBeam-{{ item.slug }})" opacity="0.45" class="facet-shimmer"/>
+              <circle cx="15" cy="18" r="1.6" fill="#38bdf8" class="solute-dot d-1"/>
+              <circle cx="49" cy="18" r="1.8" fill="#0284c7" class="solute-dot d-2"/>
+              <circle cx="51" cy="44" r="1.4" fill="#38bdf8" class="solute-dot d-3"/>
+              <circle cx="13" cy="40" r="1.6" fill="#1d4ed8" class="solute-dot d-4"/>
+              <defs>
+                <linearGradient id="facetBeam-{{ item.slug }}" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#ffffff" stop-opacity="0"/>
+                  <stop offset="50%" stop-color="#ffffff" stop-opacity="0.85"/>
+                  <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          {% elif item.slug == 'sodium-hydroxide' %}
+            <!-- Sodium Hydroxide: Caustic Hazard & Exothermic Thermal Waves -->
+            <svg viewBox="0 0 64 64" class="sci-svg sci-naoh" width="50" height="50" fill="none">
+              <circle cx="32" cy="33" r="13" stroke="#e63946" stroke-width="1.2" opacity="0.3" class="thermal-wave tw-1"/>
+              <circle cx="32" cy="33" r="21" stroke="#ffb703" stroke-width="1" opacity="0.2" class="thermal-wave tw-2"/>
+              <polygon points="32,9 50,19 50,41 32,52 14,41 14,19" fill="rgba(230,57,70,0.08)" stroke="#e63946" stroke-width="1.6" class="naoh-shield"/>
+              <circle cx="32" cy="31" r="7.5" fill="#e63946" class="naoh-pellet"/>
+              <text x="32" y="34" fill="#ffffff" font-size="7.5" font-weight="bold" text-anchor="middle">OH⁻</text>
+              <text x="32" y="45.5" fill="#a31c26" font-size="6" font-weight="bold" text-anchor="middle">ΔH &lt; 0</text>
+            </svg>
+          {% else %}
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 2v7.31L4.1 19.46A2 2 0 0 0 5.8 22h12.4a2 2 0 0 0 1.7-2.54L14 9.31V2h-4Z"/></svg>
+          {% endif %}
+        </div>
+        <span class="badge {% if item.category == 'Alkaline Agent' %}badge-alert{% elif item.category == 'Surfactant' %}badge-sun{% else %}badge-aqua{% endif %}">
+          {{ item.category }}
+        </span>
+      </div>
+
+      <div class="ingredient-info">
+        <h3>{{ item.name }}</h3>
+
+        <!-- Prominent Actual Quantity Used Badge -->
+        <div class="quantity-badge-prominent">
+          <span class="qty-label">QUANTITY USED:</span>
+          <span class="qty-value">{{ item.quantity }}</span>
+        </div>
+
+        <div class="ingredient-meta">
+          <span class="mono-formula">{{ item.formula_display }}</span>
+          <span class="state-pill state-{{ item.state|lower }}">{{ item.state }}</span>
+        </div>
+
+        <div class="ingredient-field">
+          <strong>Chemical Function:</strong>
+          <span>{{ item.function }}</span>
+        </div>
+
+        <div class="ingredient-field">
+          <strong>Description:</strong>
+          <span>{{ item.notes }}</span>
+        </div>
+      </div>
+
+      <div class="ingredient-safety {% if 'CORROSIVE' in item.safety or 'DANGER' in item.safety or 'Harmful' in item.safety %}danger{% endif %}">
+        <strong>Laboratory Safety:</strong> {{ item.safety }}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- Chemical Reactions Section -->
+  <div class="reactions-section" id="reactions">
+    <div style="text-align: center; margin-bottom: 2.5rem;" class="reactions-heading">
+      <span class="badge badge-aqua">Stoichiometry & Kinetics</span>
+      <h2 style="font-size: 2rem;">Underlying Chemical Reactions</h2>
+      <p>Laboratory reaction equations with dynamic molecular mechanism simulations.</p>
+    </div>
+
+    <div class="reactions-grid">
+      {% for rx in content.reactions %}
+      <div class="reaction-card" id="rx-{{ rx.slug }}">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem;">
+          <h3 style="font-size: 1.25rem;">{{ rx.title }}</h3>
+          <span class="badge badge-aqua">Mechanism</span>
+        </div>
+
+        <div class="mono-equation">
+          {{ rx.equation }}
+        </div>
+
+        <!-- Animated SVG Mechanism Diagram -->
+        <div class="reaction-visual" title="Interactive {{ rx.title }} Mechanism">
+          {% if rx.slug == 'neutralization' %}
+          <!-- Neutralization Diagram: R-SO3H + NaOH -> R-SO3Na + H2O -->
+          <svg viewBox="0 0 520 180" class="rx-svg rx-neutralize-svg" fill="none">
+            <rect width="520" height="180" fill="#f0fafc" rx="10"/>
+            
+            <!-- Reactant 1: Acid Precursor R-SO3H -->
+            <g class="rx-entity acid-group" transform="translate(30, 45)">
+              <rect x="0" y="8" width="105" height="58" rx="8" fill="#ffffff" stroke="rgba(15,76,92,0.25)" stroke-width="1.2"/>
+              <!-- Hydrophobic tail representation -->
+              <path d="M12 28l8-6 8 6 8-6 8 6" stroke="#0f4c5c" stroke-width="2" stroke-linecap="round"/>
+              <text x="50" y="30" fill="#0f4c5c" font-size="9" font-weight="bold">R-Tail</text>
+              <!-- Acid Headgroup -->
+              <rect x="12" y="40" width="81" height="20" rx="4" fill="#3ec1d3" opacity="0.25"/>
+              <text x="52" y="54" fill="#0f4c5c" font-size="11" font-weight="bold" text-anchor="middle">-SO₃H (Acid)</text>
+            </g>
+
+            <!-- Plus Sign -->
+            <text x="150" y="82" fill="#0f4c5c" font-size="24" font-weight="bold" text-anchor="middle">+</text>
+
+            <!-- Reactant 2: NaOH Alkali -->
+            <g class="rx-entity naoh-group" transform="translate(165, 45)">
+              <rect x="0" y="8" width="90" height="58" rx="8" fill="#ffffff" stroke="rgba(230,57,70,0.3)" stroke-width="1.2"/>
+              <circle cx="28" cy="37" r="16" fill="rgba(230,57,70,0.15)"/>
+              <text x="28" y="41" fill="#a31c26" font-size="11" font-weight="bold" text-anchor="middle">OH⁻</text>
+              <circle cx="65" cy="37" r="13" fill="rgba(62,193,211,0.25)"/>
+              <text x="65" y="41" fill="#0f4c5c" font-size="10" font-weight="bold" text-anchor="middle">Na⁺</text>
+              <text x="45" y="60" fill="#a31c26" font-size="8.5" font-weight="600" text-anchor="middle">Strong Alkali</text>
+            </g>
+
+            <!-- Reaction Arrow with Heat Waves -->
+            <g class="rx-center" transform="translate(268, 65)">
+              <!-- Exothermic heat pulse halo -->
+              <circle cx="22" cy="12" r="16" stroke="#ffb703" stroke-width="1.5" stroke-dasharray="3 3" opacity="0.7" class="rx-heat-wave"/>
+              <!-- Forward arrow -->
+              <path d="M4 12 h36 m-8 -6 l8 6 -8 6" stroke="#0f4c5c" stroke-width="2.2" stroke-linecap="round"/>
+              <text x="22" y="-3" fill="#e63946" font-size="9" font-weight="bold" text-anchor="middle">ΔH &lt; 0 (Heat)</text>
+            </g>
+
+            <!-- Products: Detergent Salt + Water -->
+            <g class="rx-entity product-salt" transform="translate(325, 42)">
+              <rect x="0" y="10" width="112" height="60" rx="8" fill="#0f4c5c" class="salt-rect"/>
+              <!-- Tail -->
+              <path d="M12 28l7-5 7 5 7-5 7 5" stroke="#a2f2fd" stroke-width="1.8" stroke-linecap="round"/>
+              <text x="60" y="30" fill="#a2f2fd" font-size="9" font-weight="bold">R-Surfactant</text>
+              <rect x="10" y="40" width="92" height="22" rx="4" fill="rgba(255,255,255,0.15)"/>
+              <text x="56" y="55" fill="#ffffff" font-size="10.5" font-weight="bold" text-anchor="middle">R-SO₃⁻ Na⁺</text>
+              <text x="56" y="67" fill="#3ec1d3" font-size="7.5" font-weight="600" text-anchor="middle">Active Detergent</text>
+            </g>
+
+            <text x="445" y="82" fill="#0f4c5c" font-size="20" font-weight="bold" text-anchor="middle">+</text>
+
+            <g class="rx-entity product-water" transform="translate(458, 48)">
+              <circle cx="24" cy="27" r="20" fill="#3ec1d3" opacity="0.25"/>
+              <text x="24" y="31" fill="#0f4c5c" font-size="12" font-weight="bold" text-anchor="middle">H₂O</text>
+              <text x="24" y="44" fill="#0f4c5c" font-size="7.5" font-weight="600" text-anchor="middle">Pure Water</text>
+            </g>
+
+            <!-- Bottom dynamic flow banner -->
+            <rect x="20" y="145" width="480" height="24" rx="6" fill="rgba(15,76,92,0.06)"/>
+            <text x="260" y="161" fill="#0f4c5c" font-size="10" font-weight="500" text-anchor="middle">
+              Exothermic Proton Transfer: Hydroxide ion abstracts H⁺ from sulfonic acid to yield stable sulfonate salt.
+            </text>
+          </svg>
+          {% else %}
+          <!-- Water Softening Diagram: Na2CO3 + Ca2+ -> CaCO3(s) v + 2Na+ -->
+          <svg viewBox="0 0 520 180" class="rx-svg rx-softening-svg" fill="none">
+            <rect width="520" height="180" fill="#f0fafc" rx="10"/>
+
+            <!-- Reactant 1: Soluble Na2CO3 Builder -->
+            <g class="rx-entity builder-group" transform="translate(25, 45)">
+              <rect x="0" y="8" width="98" height="58" rx="8" fill="#ffffff" stroke="rgba(15,76,92,0.25)" stroke-width="1.2"/>
+              <text x="49" y="30" fill="#0b2a35" font-size="11" font-weight="bold" text-anchor="middle">Na₂CO₃</text>
+              <rect x="10" y="38" width="78" height="20" rx="4" fill="rgba(62,193,211,0.2)"/>
+              <text x="49" y="52" fill="#0f4c5c" font-size="8.5" font-weight="600" text-anchor="middle">Soluble Builder</text>
+            </g>
+
+            <!-- Plus Sign -->
+            <text x="136" y="82" fill="#0f4c5c" font-size="24" font-weight="bold" text-anchor="middle">+</text>
+
+            <!-- Reactant 2: Hard Water Mineral Ca2+ -->
+            <g class="rx-entity mineral-group" transform="translate(150, 45)">
+              <rect x="0" y="8" width="90" height="58" rx="8" fill="#ffffff" stroke="rgba(255,183,3,0.4)" stroke-width="1.2"/>
+              <circle cx="45" cy="32" r="16" fill="rgba(255,183,3,0.2)"/>
+              <text x="45" y="37" fill="#875b00" font-size="12" font-weight="bold" text-anchor="middle">Ca²⁺</text>
+              <text x="45" y="58" fill="#875b00" font-size="8.5" font-weight="600" text-anchor="middle">Hardness Ion</text>
+            </g>
+
+            <!-- Reaction Arrow -->
+            <g class="rx-center" transform="translate(252, 65)">
+              <path d="M4 12 h34 m-8 -6 l8 6 -8 6" stroke="#0f4c5c" stroke-width="2.2" stroke-linecap="round"/>
+              <text x="21" y="-3" fill="#0f4c5c" font-size="8.5" font-weight="bold" text-anchor="middle">Precipitation</text>
+            </g>
+
+            <!-- Product 1: Insoluble CaCO3 Precipitate (settling) -->
+            <g class="rx-entity precipitate-group" transform="translate(305, 36)">
+              <rect x="0" y="8" width="112" height="68" rx="8" fill="#0f4c5c"/>
+              <text x="56" y="32" fill="#ffffff" font-size="11.5" font-weight="bold" text-anchor="middle">CaCO₃(s) ↓</text>
+              <!-- Settling precipitate flakes animation -->
+              <g class="falling-flakes">
+                <polygon points="32,42 36,44 34,48 30,46" fill="#ffb703" class="flake fl-1"/>
+                <polygon points="56,40 60,42 58,46 54,44" fill="#a2f2fd" class="flake fl-2"/>
+                <polygon points="78,43 82,45 80,49 76,47" fill="#ffffff" class="flake fl-3"/>
+              </g>
+              <rect x="10" y="52" width="92" height="18" rx="3" fill="rgba(255,255,255,0.15)"/>
+              <text x="56" y="65" fill="#a2f2fd" font-size="8.5" text-anchor="middle">Insoluble Chalk</text>
+            </g>
+
+            <text x="432" y="82" fill="#0f4c5c" font-size="20" font-weight="bold" text-anchor="middle">+</text>
+
+            <!-- Product 2: Harmless Soft Na+ Ions -->
+            <g class="rx-entity buoyant-na" transform="translate(446, 45)">
+              <circle cx="28" cy="24" r="14" fill="#3ec1d3" opacity="0.3"/>
+              <text x="28" y="28" fill="#0f4c5c" font-size="11" font-weight="bold" text-anchor="middle">2 Na⁺</text>
+              <text x="28" y="52" fill="#0f4c5c" font-size="8" font-weight="600" text-anchor="middle">Soft Matrix</text>
+            </g>
+
+            <!-- Bottom dynamic flow banner -->
+            <rect x="20" y="145" width="480" height="24" rx="6" fill="rgba(15,76,92,0.06)"/>
+            <text x="260" y="161" fill="#0f4c5c" font-size="10" font-weight="500" text-anchor="middle">
+              Sequestration Mechanism: Carbonate anions bind Ca²⁺ into insoluble chalk (Ksp = 3.3 × 10⁻⁹), preventing detergent inactivation.
+            </text>
+          </svg>
+          {% endif %}
+        </div>
+
+        <p style="font-size: 0.925rem; color: var(--ink); margin-bottom: 0.5rem; line-height: 1.5;">
+          {{ rx.caption }}
+        </p>
+        <p style="font-size: 0.825rem; color: var(--ink-muted); background: var(--foam-muted); padding: 0.6rem; border-radius: var(--radius-sm); border: 1px solid rgba(62,193,211,0.2);">
+          <strong>Mechanism:</strong> {{ rx.mechanism }}
+        </p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  // Smooth Animated Filter Chips Transition
+  const filterBtns = document.querySelectorAll('#ingredient-filters .filter-chip');
+  const cards = document.querySelectorAll('#ingredients-container .ingredient-card');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (btn.classList.contains('active')) return;
+
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filter = btn.dataset.filter;
+
+      cards.forEach(card => {
+        const matches = (filter === 'all' || card.dataset.category === filter);
+
+        if (matches) {
+          card.style.display = 'flex';
+          // Trigger smooth fade & scale in
+          card.classList.remove('card-leaving');
+          requestAnimationFrame(() => {
+            card.classList.add('card-entering');
+            setTimeout(() => card.classList.remove('card-entering'), 350);
+          });
+        } else {
+          // Fade & scale out then hide
+          card.classList.add('card-leaving');
+          setTimeout(() => {
+            if (card.classList.contains('card-leaving')) {
+              card.style.display = 'none';
+              card.classList.remove('card-leaving');
+            }
+          }, 240);
+        }
+      });
+    });
+  });
+</script>
+{% endblock %}

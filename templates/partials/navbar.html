@@ -1,0 +1,41 @@
+<header class="navbar-wrapper" id="site-navbar">
+  <div class="scroll-progress-bar" id="scroll-progress"></div>
+  <div class="container navbar">
+    <!-- Clickable Logo and Branding Area navigating to Landing page (/) -->
+    <a href="/" class="nav-brand" aria-label="Liquid Detergent Laboratory Experiment — Return to Landing Page" title="Return to Landing Page">
+      <div class="brand-icon" aria-hidden="true">
+        <!-- Beaker / Flask SVG icon -->
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M10 2v7.31L4.1 19.46A2 2 0 0 0 5.8 22h12.4a2 2 0 0 0 1.7-2.54L14 9.31V2h-4Z"/>
+          <path d="M8.5 2h7"/>
+          <path d="M7 16h10"/>
+        </svg>
+      </div>
+      <div class="brand-meta">
+        <span class="title">Liquid Detergent</span>
+        <span class="sub">Lab Experiment &bull; MIT AOE</span>
+      </div>
+    </a>
+
+    <button class="nav-toggle" id="nav-toggle-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </button>
+
+    <!-- Navigation links without separate Landing tab -->
+    <nav aria-label="Main Navigation">
+      <ul class="nav-links" id="nav-links-menu">
+        <li><a href="/home" class="nav-link {% if current_page == 'home' %}active{% endif %}">Home</a></li>
+        <li><a href="/ingredients" class="nav-link {% if current_page == 'ingredients' %}active{% endif %}">Ingredients</a></li>
+        <li><a href="/process" class="nav-link {% if current_page == 'process' %}active{% endif %}">Process</a></li>
+        <li><a href="/flowchart" class="nav-link {% if current_page == 'flowchart' %}active{% endif %}">Flowchart</a></li>
+        <li><a href="/gallery" class="nav-link {% if current_page == 'gallery' %}active{% endif %}">Gallery</a></li>
+        <li><a href="/applications" class="nav-link {% if current_page == 'applications' %}active{% endif %}">Applications</a></li>
+        <li><a href="/quiz" class="nav-link {% if current_page == 'quiz' %}active{% endif %}">Quiz & FAQ</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
